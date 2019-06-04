@@ -1,9 +1,10 @@
 class UserStepsController < ApplicationController
   include Wicked::Wizard
-  steps :personal, :social
+  steps :step2, :step3, :step4
 
   def show
   	@user = current_user
+  	@user.games.build
     render_wizard
   end
 
@@ -20,7 +21,13 @@ class UserStepsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name,:game_category,:play_time,:introduction,:game_title,:plofile_image)
+    params.require(:user).permit(:name,
+    	                         :game_category,
+    	                         :play_time,
+    	                         :introduction,
+    	                         :plofile_image,
+    	                         games_attributes: [:id, :user_id, :title, :_destroy]
+    	                         )
   end
 
 end

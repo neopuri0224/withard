@@ -10,8 +10,30 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require cocoon
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// 画像投稿時のプレビュー表示
+$( document ).on('turbolinks:load', function() {
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#profile_image_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#profile_image").change(function(){
+    $('#profile_image_prev').removeClass('hidden');
+    readURL(this);
+  });
+});

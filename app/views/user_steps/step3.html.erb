@@ -1,0 +1,12 @@
+<%= form_with model: @user, url: wizard_path do |f| %>
+  <h2>どれくらいの頻度でゲームをプレイしてますか？</h2>
+  <div class="field">
+    <%= f.select :play_time, User.play_times.keys.to_a, {}, class: 'form-control input-sm' %>
+  </div>
+  <div class="actions">
+          <%= f.submit "次へ" %>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+<% end %>

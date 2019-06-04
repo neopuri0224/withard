@@ -1,0 +1,23 @@
+<%= form_with model: @user, url: wizard_path do |f| %>
+  <h2>どんなゲームをしていますか？</h2>
+  <div class="field">
+    <%= f.label :game_category,"一番好きなゲームカテゴリは？" %><br />
+    <%= f.select :game_category, User.game_categories.keys.to_a, {}, class: 'form-control input-sm' %>
+  </div>
+  <div class="game_field">
+    <%= f.fields_for :games do |game| %>
+      <%= f.label :title,"今プレイしているゲームは？" %><br />
+      <%= render 'game_fields', f: game, class: 'form-control' %>
+      <div class="links">
+        <%= link_to_add_association '＋ゲームを追加', f, :games, class: "btn btn-link" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="actions">
+          <%= f.submit "登録!" %>
+  </div>
+<% end %>
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">これで最後です！</div>
+  </div>
