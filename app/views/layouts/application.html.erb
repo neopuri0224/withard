@@ -10,7 +10,12 @@
   </head>
 
   <body>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <%= yield %>
+    <div class="dark"></div>
+    <%= video_tag "bg_universe2_07_720.mp4", autoplay: true, loop: true, muted: true, class: 'background-video' %>
+    <div class="main">
+      <!-- <img src="images/jewellery.jpg" alt="Placeholder"> -->
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <%= yield %>
+    </div>
   </body>
 </html>
