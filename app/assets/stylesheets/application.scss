@@ -16,6 +16,11 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+body {
+    color: white;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
 .background-video {
 	position:fixed;
 	right:0;
@@ -27,19 +32,17 @@
 	z-index:-1;
 }
 .dark {
+	position:fixed;
+	right:0;
+	bottom:0;
 	min-width:100%;
 	min-height:100%;
 	width:auto;
 	height:auto;
-	background-color: rgba(0,0,0,0.3);
-	position: fixed;
-	top: 0;
-	left: 0;
-	right:0;
-	bottom:0;
+	background-color: rgba(0,0,0,0.6);
 	z-index: 1;
 }
 .main {
-    position: fixed;
+    position: relative;
     z-index: 2;
 }

@@ -1,12 +1,22 @@
-<%= form_with model: @user, url: wizard_path do |f| %>
-  <h2>どれくらいの頻度でゲームをプレイしてますか？</h2>
-  <div class="field">
-    <%= f.select :play_time, User.play_times.keys.to_a, {}, class: 'form-control input-sm' %>
+<div class="container">
+  <div class="row justify-content-center align-items-center step-field">
+    <div class="col-6">
+      <h2><strong>どれくらいの頻度で<br>
+                  ゲームをプレイしてますか？</strong></h2><br>
+      <%= form_with model: @user, url: wizard_path do |f| %>
+        <div class="form-group">
+          <%= f.select :play_time, User.play_times.keys.to_a, {}, class: 'form-control input-sm' %>
+        </div>
+        <div class="actions">
+                <%= f.submit "次へ",class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="actions">
-          <%= f.submit "次へ" %>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">step3</div>
+      </div>
+    </div>
   </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-<% end %>

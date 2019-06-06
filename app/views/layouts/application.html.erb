@@ -7,14 +7,32 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body style="padding-top:4.5rem;">
     <div class="dark"></div>
     <%= video_tag "bg_universe2_07_720.mp4", autoplay: true, loop: true, muted: true, class: 'background-video' %>
     <div class="main">
-      <!-- <img src="images/jewellery.jpg" alt="Placeholder"> -->
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <span class="navbar-brand mb-0 h1">With-ard</span>
+        <div class="collapse navbar-collapse" id="Navber">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(現位置)</span></a>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path,class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log in", new_user_session_path,class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete,class: 'nav-link' %>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
       <%= yield %>
     </div>
   </body>

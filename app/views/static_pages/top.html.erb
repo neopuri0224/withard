@@ -1,2 +1,9 @@
-<%= link_to "新規登録", new_user_registration_path %>
-<%= link_to "ログイン", new_user_session_path %>
+<div class="container">
+  <div class="jumbotron mt-4" style= "background-color:#343a40;">
+    <h1 class="display-4">Welcome to With-ard!</h1>
+    <p class="lead">これは単純なヒーローユニット、注目のコンテンツや情報に特別な注意を喚起するためのシンプルなジャンボトロンスタイルのコンポーネント。</p>
+    <hr class="my-4">
+    <p>より大きなコンテナの範囲内でコンテンツに空間をあけるため、文字の体裁と空白用のユーティリティクラスを使用している。</p>
+    <%= link_to "Sign up here!", new_user_registration_path,class: 'btn btn-primary btn-lg' %>
+  </div><!-- /.jumbotron -->
+</div><!-- /.container -->
