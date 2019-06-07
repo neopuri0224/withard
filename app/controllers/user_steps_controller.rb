@@ -17,7 +17,7 @@ class UserStepsController < ApplicationController
   private
 
   def finish_wizard_path
-	users_path
+	posts_path
   end
 
   def user_params
@@ -25,7 +25,7 @@ class UserStepsController < ApplicationController
     	                         :game_category,
     	                         :play_time,
     	                         :introduction,
-    	                         :plofile_image,
+    	                         :profile_image,
     	                         games_attributes: [:id, :user_id, :title, :_destroy]
     	                         )
   end

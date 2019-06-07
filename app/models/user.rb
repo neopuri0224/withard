@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :games, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   accepts_nested_attributes_for :games, allow_destroy: true
   has_one_attached :profile_image
