@@ -2,13 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@users = User.search_by(params[:game_category])
+  	category = Category.find(params[:category_id])
+  	@users = category.users
   end
 
   def show
   end
 
-  def category
-  	@cate
-  end
 end

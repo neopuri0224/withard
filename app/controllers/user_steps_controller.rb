@@ -5,6 +5,7 @@ class UserStepsController < ApplicationController
   def show
   	@user = current_user
   	@user.games.build
+    @user.user_categories.build
     render_wizard
   end
 
@@ -22,12 +23,12 @@ class UserStepsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name,
-    	                         :game_category,
-    	                         :play_time,
-    	                         :introduction,
-    	                         :profile_image,
-    	                         games_attributes: [:id, :user_id, :title, :_destroy]
-    	                         )
+    	                           :play_time,
+    	                           :introduction,
+    	                           :profile_image,
+    	                           games_attributes: [:id, :user_id, :title, :_destroy],
+                                 user_categories_attributes: [:category_id, :_destroy]
+    	                           )
   end
 
 end

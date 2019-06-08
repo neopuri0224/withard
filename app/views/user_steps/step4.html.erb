@@ -5,11 +5,16 @@
       <%= form_with model: @user, url: wizard_path do |f| %>
         <div class="form-group">
           <%= f.label :game_category,"一番好きなゲームカテゴリは？" %><br />
-          <%= f.select :game_category, User.game_categories.keys.to_a, {}, class: 'form-control input-sm' %>
+          <div class="form-group">
+              <%= f.fields_for :user_categories do |user_category| %>
+                  <%= user_category.hidden_field :user_id %>
+                  <%= user_category.collection_select :category_id, Category.all, :id, :name, class: 'form-control input-sm' %>
+              <% end %>
+          </div>
         </div>
         <div class="game_field form-group">
           <%= f.fields_for :games do |game| %>
-            <%= f.label :title,"今プレイしているゲームは？" %><br />
+            <%= f.label :title,"今プレイしているゲームは？" %>
             <%= render 'game_fields', f: game, class: 'form-control' %>
             <div class="links">
               <%= link_to_add_association '＋ゲームを追加', f, :games, class: "btn btn-info" %>
