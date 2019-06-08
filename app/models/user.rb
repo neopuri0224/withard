@@ -16,4 +16,10 @@ class User < ApplicationRecord
   #validates_format_of :name, :without =&gt; /\W/, :allow_blank =&gt; true
   #step2でのみValidationを有効にする。
   #validates_presence_of :name, if: :on_step2_step?
+
+  class << self
+    def search_by(category)
+      category ? User.where(game_category: category) : User.all
+    end
+  end
 end

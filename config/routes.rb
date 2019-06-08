@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'static_pages#top'
   get 'static_pages/top'
+  get 'users/category'
   devise_for :users, controllers: {
         registrations: 'users/registrations',
       }

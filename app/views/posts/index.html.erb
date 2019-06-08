@@ -1,24 +1,23 @@
 <div class="container-fluid">
   <div class="row">
   	<div class="col-2">
-	  <div class="card card-profile bg-dark" style="width: 14rem;">
+	  <div class="card position-fixed bg-dark" style="width: 14rem;">
 		<%= image_tag (current_user.profile_image),class: 'profile_image card-img-top' if current_user.profile_image.attached? %>
 	    <div class="card-body">
 		  <h5 class="card-title"><%= current_user.name %></h5>
 		</div>
 		<div class="card-body">
-		  <a href="#" class="btn btn-primary btn-sm">My page</a>
-		  <a href="#" class="btn btn-secondary btn-sm">My buddies</a>
+		  <a href="#" class="btn btn-primary">My page</a>
+		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+	        Post!  <i class="far fa-comment"></i>
+	      </button>
 	    </div>
 	  </div>
-	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      ココを押すと表示
-      </button>
-	  <div class="modal fade bg-transparent" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
 	    <div class="modal-dialog modal-bottom modal-lg" role="document">
 	      <div class="modal-content bg-secondary">
 	        <div class="modal-header">
-	          <h5 class="modal-title" id="exampleModalLabel">モーダルのタイトル</h5>
+	          <h5 class="modal-title" id="exampleModalLabel">Post!</h5>
 	          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
 	            <span aria-hidden="true">&times;</span>
 	          </button>
@@ -44,23 +43,42 @@
 	  </div><!-- /.modal -->
     </div>
     <div class="col-8 offset-1">
-      <% @posts.each do |post| %>
-      <div class="card bg-dark mb-3">
-        <div class="media">
-          <a href="#" class="align-self-start mr-3">
-	        <%= image_tag post.user.profile_image.variant(resize:'50x50').processed,style: 'border-radius: 50%;' %>
-	      </a>
-	      <div class="media-body">
-	        <h5 class="mt-0"><%= post.user.name %></h5>
-	        <p><%= post.post_content %>
-			<% if post.post_image.attached? %>
-			    <%= image_tag post.post_image.variant(resize:'200x100').processed %> <br>
-			<% end %>
-	        <%= link_to '削除', user_post_path(current_user.id,post.user_id), method: :delete, "data-confirm" => "削除しますか？" %></p>
-	      </div>
-        </div>
+      <div id="posts">
+      	<div class="post">
+	      <% @posts.each do |post| %>
+		      <div class="card post bg-secondary shadow-lg mb-3">
+		        <div class="media">
+		          <a href="#" class="align-self-start mr-3">
+			        <%= image_tag post.user.profile_image.variant(resize:'50x50').processed,style: 'border-radius: 50%;' %>
+			      </a>
+			      <div class="media-body">
+			        <h5 class="mt-0"><%= post.user.name %></h5>
+			        <p><%= post.post_content %>
+					<% if post.post_image.attached? %>
+					    <%= image_tag post.post_image.variant(resize:'200x100').processed %> <br>
+					<% end %>
+			        <%= link_to '削除', user_post_path(current_user.id,post.user_id), method: :delete, "data-confirm" => "削除しますか？" %></p>
+			      </div>
+		        </div>
+		      </div>
+	      <% end %>
+	    </div>
       </div>
-      <% end %>
+	  <div class="page-load-status">
+		<div class="infinite-scroll-request">
+		    <button class="btn btn-primary btn-lg" type="button" disabled>
+			  Loading...
+			</button>
+		    <br>
+		    <div hidden>
+		      <%= paginate @posts %>
+		    </div>
+		  <p class="infinite-scroll-last">
+		    end of contents!!!</p>
+		  <p class="infinite-scroll-error">
+		    this is error message</p>
+		</div>
+      </div>
     </div>
   </div>
 </div>
