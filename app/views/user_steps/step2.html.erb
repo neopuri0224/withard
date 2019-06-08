@@ -11,7 +11,7 @@
         <div class="form-group">
           <%= f.label :profile_image,"あなたとわかる画像を見せてください。" %><br>
           <%= f.file_field :profile_image, id: 'profile_image',class: 'form-control' %>
-      　　<img id="profile_image_prev" src="#" class='hidden'>
+          <img id="profile_image_prev" src="#" class='hidden'>
           <% if @user.profile_image.attached? %>
             <div class="custom-file">
               <%= image_tag profile_image, class: 'profile_present_image' %>
@@ -19,7 +19,7 @@
           <% end %>
         </div>
         <div class="actions">
-              <%= f.submit "次へ",class: 'btn btn-primary' %>
+          <%= f.submit "次へ",class: 'btn btn-primary' %>
         </div>
     </div>
   </div>
