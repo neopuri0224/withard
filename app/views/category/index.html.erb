@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="row">
+		<% @categories.each do |category| %>
+			<div class="col-4">
+			  <%= link_to category_users_path(category_id:category.id) do %>
+			    <%= category.name %>
+			  <% end %>
+			</div>
+		<% end %>
+	</div>
+</div>
