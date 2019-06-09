@@ -69,3 +69,5 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.1'
 gem 'kaminari'
 gem 'pry-byebug'
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
