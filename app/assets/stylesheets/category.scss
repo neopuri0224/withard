@@ -1,3 +1,32 @@
 // Place all the styles related to the category controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.box {
+	position: relative;
+}
+.img {
+	filter: drop-shadow(4px 4px 8px #666);
+	border-radius: 10%;
+	transition: all .5s;
+	margin-bottom: 20px;
+}
+.img:hover {
+	filter: brightness(70%);
+	transform: translateY(-5px);
+}
+.text {
+	position: absolute;
+	top: 40%;
+    left: 10%;
+    right: 10%;
+	z-index: 10;
+	color: #fff;
+	text-shadow: 5px 5px 5px #000, -5px -5px 5px #000;
+	font-size: 30px;
+	font-family: 'proxima-nova', sans-serif;
+	font-weight: 600;
+	transition: all .5s;
+}
+.text:hover {
+	transform: translateY(-5px);
+}
