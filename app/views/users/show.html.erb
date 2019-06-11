@@ -7,6 +7,11 @@
 		  <h5 class="card-title"><%= @user.name %></h5>
 		</div>
 		<div class="card-body">
+	      <section class="stats">
+	        <%= render 'layouts/stats' %>
+	      </section>
+		</div>
+		<div class="card-body">
 		  <% if @user.id == current_user.id %>
 		    <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary" %>
 		  <% else %>
