@@ -1,18 +1,44 @@
 <div class="row">
   <aside class="col-4">
-    <section class="user_info">
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my page", @user %></span>
-      <span><b>Posts:</b> <%= @user.posts.count %></span>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
+    <div class="card position-fixed bg-dark" style="width: 14rem;">
+      <%= image_tag (@user.profile_image),class: 'profile_image card-img-top' if @user.profile_image.attached? %>
+      <div class="card-body">
+        <h5 class="card-title"><%= @user.name %></h5>
+      </div>
+      <div class="card-body">
+        <section class="stats">
+          <%= render 'layouts/stats' %>
+        </section>
+      </div>
+      <div class="card-body">
+        <% if @user.id == current_user.id %>
+          <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary" %>
+        <% else %>
+          <%= render 'layouts/follow_form', user: @user %>
+          <a href="#" class="btn btn-success">Talk!</a>
+        <% end %>
+      </div>
+    </div>
   </aside>
   <div class="col-8">
     <% if @users.any? %>
       <ul class="users follow">
-        <%= render @users %>
+        <div class="card-columns">
+          <% @users.each do |user| %>
+            <div class="card bg-dark" style="width: 18rem;">
+              <% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image,class: "card-img-top", alt:"プロフィール画像" %>
+              <% else %>
+                <%= image_tag "no_image.jpg",class: "card-img-top",alt:"プロフィール画像" %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= user.name %></h5>
+                <p class="card-text"><%= link_to '詳細', user_path(user.id) %></p>
+                <p class="card-text"><small class="text-muted">最終ログイン日:<%= user.current_sign_in_at.strftime("%Y-%m-%d") %></small></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </ul>
       <%= paginate @users %>
     <% end %>

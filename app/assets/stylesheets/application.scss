@@ -50,3 +50,22 @@ body {
 .modal-bottom {
 	margin-top: 300px;
 }
+
+#page-top {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: 400%;
+}
+
+#page-top a {
+    display: block;
+    color: #fff;
+    padding: 25px 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+#page-top a:hover {
+    text-decoration: none;
+}
