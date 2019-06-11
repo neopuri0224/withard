@@ -7,7 +7,7 @@
 		  <h5 class="card-title"><%= current_user.name %></h5>
 		</div>
 		<div class="card-body">
-		  <a href="#" class="btn btn-primary">My page</a>
+		  <%= link_to 'My page', user_path(current_user.id),class: "btn btn-primary" %>
 		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 	        Post!  <i class="far fa-comment"></i>
 	      </button>
@@ -50,14 +50,14 @@
 		        <div class="media">
 		          <a href="#" class="align-self-start mr-3">
 		          <% if post.user.profile_image.attached? %>
-			        <%= image_tag post.user.profile_image.variant(resize:'50x50').processed,style: 'border-radius: 50%;' %>
+			        <%= image_tag post.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;' %>
 			      <% end %>
 			      </a>
 			      <div class="media-body">
 			        <h5 class="mt-0"><%= post.user.name %></h5>
 			        <p><%= post.post_content %>
 					<% if post.post_image.attached? %>
-					    <%= image_tag post.post_image.variant(resize:'200x100').processed %> <br>
+					    <%= image_tag post.post_image.variant(resize:'100x200').processed %> <br>
 					<% end %>
 			        <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %></p>
 			      </div>

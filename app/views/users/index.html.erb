@@ -1,8 +1,20 @@
 <div class="container">
   <div class="row">
-	<% @users.each do |user| %>
-	  <%= user.name %>
-	  <%= user.email %>
-	<% end %>
+    <div class="card-columns">
+      <% @users.each do |user| %>
+		  <div class="card bg-dark" style="width: 18rem;">
+			<% if user.profile_image.attached? %>
+		  	  <%= image_tag user.profile_image,class: "card-img-top", alt:"プロフィール画像" %>
+		  	<% else %>
+		  	  <%= image_tag "no_image.jpg",class: "card-img-top",alt:"プロフィール画像" %>
+		  	<% end %>
+		    <div class="card-body">
+		      <h5 class="card-title"><%= user.name %></h5>
+		      <p class="card-text"><%= link_to '詳細', user_path(user.id) %></p>
+		      <p class="card-text"><small class="text-muted">最終ログイン日:<%= user.current_sign_in_at.strftime("%Y-%m-%d") %></small></p>
+		    </div>
+		  </div>
+	  <% end %>
+	</div>
   </div>
 </div>

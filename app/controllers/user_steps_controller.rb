@@ -18,7 +18,7 @@ class UserStepsController < ApplicationController
   private
 
   def finish_wizard_path
-	posts_path
+	  posts_path
   end
 
   def user_params

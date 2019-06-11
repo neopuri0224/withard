@@ -1,2 +1,59 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container-fluid">
+  <div class="row">
+  	<div class="col-2">
+	  <div class="card position-fixed bg-dark" style="width: 14rem;">
+		<%= image_tag (@user.profile_image),class: 'profile_image card-img-top' if @user.profile_image.attached? %>
+	    <div class="card-body">
+		  <h5 class="card-title"><%= @user.name %></h5>
+		</div>
+		<div class="card-body">
+		  <% if @user.id == current_user.id %>
+		    <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary" %>
+		  <% else %>
+		    <a href="#" class="btn btn-primary">Buddy!</a>
+		    <a href="#" class="btn btn-success">Talk!</a>
+		  <% end %>
+	    </div>
+	  </div>
+    </div>
+    <div class="col-8 offset-1">
+	  <div class="card bg-secondary">
+	    <div class="card-header">~Profile~</div>
+	    <div class="card-body">
+    	  <%= @user.introduction %>
+	    </div>
+	    <ul class="list-group list-group-flush">
+	      <li class="list-group-item bg-secondary"><%= @category.name %></li>
+	      <li class="list-group-item bg-secondary">
+	      	<% @games.each do |game| %>
+	      	  <%= game.title %>
+	      	<% end %>
+	      </li>
+	   </ul>
+	  </div><br>
+      <div id="posts">
+      	<div class="post">
+	      <% @posts.each do |post| %>
+		      <div class="card post bg-secondary shadow-lg mb-3">
+		        <div class="media">
+		          <a href="#" class="align-self-start mr-3">
+		          <% if post.user.profile_image.attached? %>
+			        <%= image_tag post.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;' %>
+			      <% end %>
+			      </a>
+			      <div class="media-body">
+			        <h5 class="mt-0"><%= post.user.name %></h5>
+			        <p><%= post.post_content %>
+					<% if post.post_image.attached? %>
+					    <%= image_tag post.post_image.variant(resize:'100x200').processed %> <br>
+					<% end %>
+			        <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %></p>
+			      </div>
+		        </div>
+		      </div>
+	      <% end %>
+	    </div>
+      </div>
+    </div>
+  </div>
+</div>

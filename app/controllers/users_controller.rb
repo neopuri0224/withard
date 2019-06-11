@@ -2,11 +2,43 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	category = Category.find(params[:category_id])
-  	@users = category.users
+  	@category = Category.find(params[:category_id])
+  	@users = @category.users.where.not(id: current_user.id).order('current_sign_in_at ASC')
   end
 
   def show
+  	@user = User.find(params[:id])
+  	@user_category = UserCategory.find_by(user_id: @user.id)
+  	@category = Category.find_by(id: @user_category.category_id)
+  	@games = Game.where(user_id: @user.id)
+  	@posts = Post.where(user_id: @user.id)
+  end
+
+  def edit
+  	@user = User.find(params[:id])
+  end
+
+  def update
+  	@user = User.find(params[:id])
+  	@user_category = @user.user_categories
+  	@user_category.delete_all
+    if @user.update_attributes(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name,
+    	                         :play_time,
+    	                         :introduction,
+    	                         :profile_image,
+    	                         games_attributes: [:id, :user_id, :title, :_destroy],
+                                 user_categories_attributes: [:category_id, :_destroy]
+    	                        )
   end
 
 end
