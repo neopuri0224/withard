@@ -10,7 +10,7 @@
 		  <% if @user.id == current_user.id %>
 		    <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary" %>
 		  <% else %>
-		    <a href="#" class="btn btn-primary">Buddy!</a>
+		    <%= render 'layouts/follow_form', user: @user %>
 		    <a href="#" class="btn btn-success">Talk!</a>
 		  <% end %>
 	    </div>

@@ -7,6 +7,11 @@
 		  <h5 class="card-title"><%= current_user.name %></h5>
 		</div>
 		<div class="card-body">
+	      <section class="stats">
+	        <%= render 'layouts/stats' %>
+	      </section>
+		</div>
+		<div class="card-body">
 		  <%= link_to 'My page', user_path(current_user.id),class: "btn btn-primary" %>
 		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 	        Post!  <i class="far fa-comment"></i>
@@ -48,11 +53,11 @@
 	      <% @posts.each do |post| %>
 		      <div class="card post bg-secondary shadow-lg mb-3">
 		        <div class="media">
-		          <a href="#" class="align-self-start mr-3">
-		          <% if post.user.profile_image.attached? %>
-			        <%= image_tag post.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;' %>
+		          <%= link_to user_path(post.user_id),class: "align-self-start mr-3" do %>
+		            <% if post.user.profile_image.attached? %>
+			          <%= image_tag post.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;' %>
+			        <% end %>
 			      <% end %>
-			      </a>
 			      <div class="media-body">
 			        <h5 class="mt-0"><%= post.user.name %></h5>
 			        <p><%= post.post_content %>
