@@ -5,8 +5,8 @@
 			  <div class="box">
 				  <%= link_to category_users_path(category_id:category.id) do %>
 					  <%= attachment_image_tag category, :image, :fill, 300, 300, class: "img-rounded img",size: '300x300' %>
-					  <p class="text"><%= category.name %></p>
 				  <% end %>
+				  <p class="text"><%= category.name %></p>
 			  </div>
 			</div>
 		<% end %>

@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_102505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_user_categories_on_category_id"
-    t.index ["user_id", "category_id"], name: "index_user_categories_on_user_id_and_category_id", unique: true
+    t.index ["user_id", "category_id"], name: "index_user_categories_on_user_id_and_category_id"
     t.index ["user_id"], name: "index_user_categories_on_user_id"
   end
 
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_06_08_102505) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
+    t.integer "sign_in_count", default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
