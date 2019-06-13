@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'rooms/show'
   root to: 'static_pages#top'
   get 'static_pages/top'
   devise_for :users, controllers: {
@@ -16,4 +18,6 @@ Rails.application.routes.draw do
   resources :posts, only:[:index, :create]
   resources :user_steps
   resources :relationships, only: [:create, :destroy]
+  resources :messages, :only => [:create]
+  resources :rooms, :only => [:create, :show, :index]
 end
