@@ -19,18 +19,30 @@
         <%= image_tag 'logo.png' %>
         <div class="collapse navbar-collapse" id="Navber">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(現位置)</span></a>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path,class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Log in", new_user_session_path,class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, method: :delete,class: 'nav-link' %>
-            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to posts_path,class: 'nav-link' do %>
+                  <p class="mb-0">Posts <i class="fas fa-home"></i></p>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to category_index_path,class: 'nav-link' do %>
+                  <p class="mb-0">Find user <i class="fas fa-search"></i></p>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link' do %>
+                  <p class="mb-0">Log out <i class="fas fa-sign-out-alt"></i></p>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path,class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log in", new_user_session_path,class: 'nav-link' %>
+              </li>
+            <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>

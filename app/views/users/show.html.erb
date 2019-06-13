@@ -3,17 +3,19 @@
   	<div class="col-2">
 	  <div class="card position-fixed bg-dark" style="width: 14rem;">
 		<%= image_tag (@user.profile_image),class: 'profile_image card-img-top' if @user.profile_image.attached? %>
-	    <div class="card-body">
+	    <div class="card-body p-2">
 		  <h5 class="card-title"><%= @user.name %></h5>
 		</div>
-		<div class="card-body">
+		<div class="card-body p-2">
 	      <section class="stats">
 	        <%= render 'layouts/stats' %>
 	      </section>
 		</div>
-		<div class="card-body">
+		<div class="card-body p-2">
 		  <% if @user.id == current_user.id %>
-		    <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary" %>
+		    <%= link_to edit_user_path(@user),class: "btn btn-primary" do %>
+		      <p class="mb-0">プロフィール編集 <i class="far fa-edit"></i></p>
+		    <% end %>
 		  <% else %>
 		    <%= render 'layouts/follow_form', user: @user %>
 		    <a href="#" class="btn btn-success">Talk!</a>
@@ -23,7 +25,9 @@
     </div>
     <div class="col-8 offset-1">
 	  <div class="card bg-secondary">
-	    <div class="card-header">~Profile~</div>
+	    <div class="card-header">
+	      <h1>Profile</h1>
+	    </div>
 	    <div class="card-body">
     	  <%= @user.introduction %>
 	    </div>

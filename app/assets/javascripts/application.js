@@ -43,15 +43,15 @@ $( document ).on('turbolinks:load', function() {
 $(function () {
     var topBtn = $('#page-top');
     topBtn.hide();
-    //スクロールが500に達したらボタン表示
+    // スクロールが300に達したらボタン表示
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 500) {
+        if ($(this).scrollTop() > 300) {
             topBtn.fadeIn();
         } else {
             topBtn.fadeOut();
         }
     });
-    //スルスルっとスクロールでトップへもどる
+    // スルスルっとスクロールでトップへもどる
     topBtn.click(function () {
         $('body,html').animate({
             scrollTop: 0
