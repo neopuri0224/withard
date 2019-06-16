@@ -17,16 +17,19 @@
 		  </div>
 	    </div>
 	    <div class="col-8 offset-1">
-			<table class="table table-dark table-striped">
+			<table class="table table-dark table-striped table-hover">
 			  <thead>
 			    <tr>
-			      <th scope="col">name</th>
+			      <th scope="col">My talk rooms!</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			    <tr>
-			      <th scope="row">1</th>
-			      <td>テーブルのセル</td>
+			      <% @anotherEntries.each do |e| %>
+			        <td style='width: 15%;'><%= image_tag (e.user.profile_image).variant(resize:'80x80').processed,style: 'border-radius: 50%;' if e.user.profile_image.attached? %></td>
+			        <td><h3><%= e.user.name %></h3></td>
+			        <td><%= link_to "Talk!",room_path(e.room.id),class: 'btn btn-success btn-lg' %></td>
+			      <% end %>
 			    </tr>
 			  </tbody>
 			</table>

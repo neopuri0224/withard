@@ -7,13 +7,13 @@ class RoomsController < ApplicationController
     @currentEntries.each do |entry|
       myRoomIds << entry.room.id
     end
-    @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?',@user.id)
+    @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?',current_user.id)
   end
 
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-      @messages = @room.messages.reverse_order
+      @messages = @room.messages
       @message = Message.new
       @entries = @room.entries
     else

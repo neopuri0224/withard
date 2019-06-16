@@ -5,6 +5,6 @@
     <%= fields_for entry do |e| %>
       <%= e.hidden_field :user_id, value: user.id %>
     <% end %>
-    <%= f.submit "チャットを始める" %>
+    <%= f.submit "Talk!",class: 'btn btn-success' %>
   <% end %>
 <% end %>
