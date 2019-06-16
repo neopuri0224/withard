@@ -2,13 +2,18 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@entries = Entry.where(user_id: current_user.id)
+    @currentEntries = current_user.entries
+    myRoomIds = []
+    @currentEntries.each do |entry|
+      myRoomIds << entry.room.id
+    end
+    @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?',@user.id)
   end
 
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-      @messages = @room.messages
+      @messages = @room.messages.reverse_order
       @message = Message.new
       @entries = @room.entries
     else

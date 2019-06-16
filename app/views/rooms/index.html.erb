@@ -1,2 +1,35 @@
-<h1>Rooms#index</h1>
-<p>Find me in app/views/rooms/index.html.erb</p>
+<div class="container-fluid">
+	<div class="row">
+	  	<div class="col-2">
+		  <div class="card position-fixed bg-dark" style="width: 14rem;">
+			<%= image_tag (current_user.profile_image),class: 'profile_image card-img-top' if current_user.profile_image.attached? %>
+		    <div class="card-body p-2">
+			  <h5 class="card-title"><%= current_user.name %></h5>
+			</div>
+			<div class="card-body p-2">
+		      <section class="stats">
+		        <%= render 'layouts/stats' %>
+		      </section>
+			</div>
+			<div class="card-body p-2">
+			  <%= link_to 'My page', user_path(current_user.id),class: "btn btn-primary" %>
+		    </div>
+		  </div>
+	    </div>
+	    <div class="col-8 offset-1">
+			<table class="table table-dark table-striped">
+			  <thead>
+			    <tr>
+			      <th scope="col">name</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">1</th>
+			      <td>テーブルのセル</td>
+			    </tr>
+			  </tbody>
+			</table>
+	    </div>
+	</div>
+</div>
