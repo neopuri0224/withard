@@ -21,8 +21,13 @@
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
+                <%= link_to rooms_path,class: 'nav-link' do %>
+                  <p class="mb-0">Talk <i class="fas fa-comments"></i></p>
+                <% end %>
+              </li>
+              <li class="nav-item">
                 <%= link_to posts_path,class: 'nav-link' do %>
-                  <p class="mb-0">Posts <i class="fas fa-home"></i></p>
+                  <p class="mb-0">Posts <i class="fas fa-list-alt"></i></p>
                 <% end %>
               </li>
               <li class="nav-item">
