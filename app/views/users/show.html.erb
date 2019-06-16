@@ -32,9 +32,13 @@
     	  <%= @user.introduction %>
 	    </div>
 	    <ul class="list-group list-group-flush">
-	      <li class="list-group-item bg-secondary"><%= @category.name %></li>
 	      <li class="list-group-item bg-secondary">
-	      	<% @games.each do |game| %>
+            <% @user.categories.each do |category| %>
+	      	  <%= category.name %>
+	      	<% end %>
+	      </li>
+	      <li class="list-group-item bg-secondary">
+	      	<% @user.games.each do |game| %>
 	      	  <%= game.title %>
 	      	<% end %>
 	      </li>
@@ -42,7 +46,7 @@
 	  </div><br>
       <div id="posts">
       	<div class="post">
-	      <% @posts.each do |post| %>
+	      <% @user.posts.each do |post| %>
 		      <div class="card post bg-secondary shadow-lg mb-3">
 		        <div class="media">
 		          <a href="#" class="align-self-start mr-3">
