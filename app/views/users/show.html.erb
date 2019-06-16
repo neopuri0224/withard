@@ -18,7 +18,7 @@
 		    <% end %>
 		  <% else %>
 		    <%= render 'layouts/follow_form', user: @user %>
-		    <a href="#" class="btn btn-success">Talk!</a>
+		    <%= render 'layouts/talk_form', user: @user,room_id: @room_id,room: @room,entry: @entry,our_room: @our_room %>
 		  <% end %>
 	    </div>
 	  </div>

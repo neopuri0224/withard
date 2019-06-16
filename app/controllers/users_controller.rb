@@ -13,6 +13,24 @@ class UsersController < ApplicationController
   	@category = Category.find_by(id: @user_category.category_id)
   	@games = Game.where(user_id: @user.id)
   	@posts = Post.where(user_id: @user.id)
+    @current_user_entries = Entry.where(user_id: current_user.id)
+    @user_entries = Entry.where(user_id: @user.id)
+
+    unless @user.id == current_user.id
+      @current_user_entries.each do |cu|
+        @user_entries.each do |u|
+          if cu.room_id == u.room_id
+            @our_room = true
+            @room_id = cu.room_id
+          end
+        end
+      end
+      unless @our_room
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
+
   end
 
   def edit
