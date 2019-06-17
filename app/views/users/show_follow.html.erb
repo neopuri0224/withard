@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="col-4">
+  <aside class="col-2">
     <div class="card position-fixed bg-dark" style="width: 14rem;">
       <%= image_tag (@user.profile_image),class: 'profile_image card-img-top' if @user.profile_image.attached? %>
       <div class="card-body">
@@ -8,32 +8,45 @@
           <%= render 'layouts/stats', user: @user %>
         </section>
         <% if @user.id == current_user.id %>
-          <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary btn-block" %>
+          <%= link_to edit_user_path(@user),class: "btn btn-primary btn-block" do %>
+            <p class="mb-0">プロフィール編集 <i class="far fa-edit"></i></p>
+          <% end %>
         <% else %>
           <%= render 'layouts/follow_form', user: @user %>
-          <a href="#" class="btn btn-success btn-block">Talk!</a>
         <% end %>
       </div>
     </div>
   </aside>
-  <div class="col-8">
+  <div class="col-8 offset-1">
     <% if @users.any? %>
       <ul class="users follow">
         <div class="card-columns">
-          <% @users.each do |user| %>
-            <div class="card bg-dark" style="width: 18rem;">
-              <% if user.profile_image.attached? %>
-                <%= image_tag user.profile_image,class: "card-img-top", alt:"プロフィール画像" %>
-              <% else %>
-                <%= image_tag "no_image.jpg",class: "card-img-top",alt:"プロフィール画像" %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= user.name %></h5>
-                <p class="card-text"><%= link_to '詳細', user_path(user.id) %></p>
-                <p class="card-text"><small class="text-muted">最終ログイン日:<%= user.current_sign_in_at.strftime("%Y-%m-%d") %></small></p>
+            <% @users.each do |user| %>
+              <div class="card bg-dark" style="width: 18rem;">
+                <% if user.profile_image.attached? %>
+                  <%= image_tag user.profile_image,class: "card-img-top", alt:"プロフィール画像" %>
+                <% else %>
+                  <%= image_tag "no_image.jpg",class: "card-img-top",alt:"プロフィール画像" %>
+                <% end %>
+                <div class="card-body p-2">
+                  <h5 class="card-title"><%= user.name %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted">プレイ頻度:<%= user.play_time %>
+                  </h6>
+                  <section class="stats">
+                    <%= render 'layouts/stats',user: user %>
+                  </section>
+                  <p class="card-text">
+                    <small>
+                      <% user.games.each do |game| %>
+                        #<%= game.title %>
+                      <% end %>
+                    </small>
+                  </p>
+                  <%= link_to 'プロフィール', user_path(user.id),class: 'btn btn-primary btn-block' %>
+                  <p class="card-text"><small class="text-muted">最終ログイン日:<%= user.current_sign_in_at.strftime("%Y-%m-%d") %></small></p>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
         </div>
       </ul>
       <%= paginate @users %>
