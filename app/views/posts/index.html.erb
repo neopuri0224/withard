@@ -57,6 +57,7 @@
 				      <% end %>
 				      <div class="media-body">
 				        <h5 class="mt-0"><%= post.user.name %></h5>
+				        <hr>
 				        <p class="card-text"><%= post.post_content %></p>
 						<% if post.post_image.attached? %>
 						    <%= image_tag post.post_image.variant(resize:'100x200').processed %> <br>

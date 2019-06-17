@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
   	@category = Category.find(params[:category_id])
+    @categories = Category.all
   	@users = @category.users.where.not(id: current_user.id).order('current_sign_in_at ASC')
   end
 
@@ -57,6 +58,7 @@ class UsersController < ApplicationController
 
   def search
     @users = User.search(params[:search]).where.not(id: current_user.id).order('current_sign_in_at ASC')
+    @categories = Category.all
   end
 
   private

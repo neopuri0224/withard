@@ -5,6 +5,16 @@
     </div>
   </div>
   <div class="row">
+	<% @categories.each do |category| %>
+	    <div class="box">
+		  <%= link_to category_users_path(category_id:category.id) do %>
+		    <%= attachment_image_tag category, :image, :fill, 100, 100, class: "img-rounded img",size: '100x100' %>
+		  <% end %>
+		  <p class="text"><%= category.name %></p>
+	    </div>
+	<% end %>
+  </div>
+  <div class="row">
     <div class="card-columns">
       <% @users.each do |user| %>
 		  <div class="card bg-dark" style="width: 18rem;">
@@ -15,7 +25,19 @@
 		  	<% end %>
 		    <div class="card-body p-2">
 		      <h5 class="card-title"><%= user.name %></h5>
-		      <p class="card-text"><%= link_to '詳細', user_path(user.id) %></p>
+		      <h6 class="card-subtitle mb-2 text-muted">プレイ頻度:<%= user.play_time %>
+			  </h6>
+			  <section class="stats">
+			    <%= render 'layouts/stats',user: user %>
+			  </section>
+			    <p class="card-text">
+			      <small>
+			        <% user.games.each do |game| %>
+			          #<%= game.title %>
+			        <% end %>
+			      </small>
+			    </p>
+		      <%= link_to 'Profile', user_path(user.id),class: 'btn btn-primary btn-block' %>
 		      <p class="card-text"><small class="text-muted">最終ログイン日:<%= user.current_sign_in_at.strftime("%Y-%m-%d") %></small></p>
 		    </div>
 		  </div>
