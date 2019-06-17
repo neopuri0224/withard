@@ -10,7 +10,19 @@
 		  	<% end %>
 		    <div class="card-body p-2">
 		      <h5 class="card-title"><%= user.name %></h5>
-		      <p class="card-text"><%= link_to '詳細', user_path(user.id) %></p>
+		      <h6 class="card-subtitle mb-2 text-muted">プレイ頻度:<%= user.play_time %>
+			  </h6>
+			  <section class="stats">
+			    <%= render 'layouts/stats',user: user %>
+			  </section>
+			    <p class="card-text">
+			      <small>
+			        <% user.games.each do |game| %>
+			          #<%= game.title %>
+			        <% end %>
+			      </small>
+			    </p>
+		      <%= link_to 'Profile', user_path(user.id),class: 'btn btn-primary btn-block' %>
 		      <p class="card-text"><small class="text-muted">最終ログイン日:<%= user.current_sign_in_at.strftime("%Y-%m-%d") %></small></p>
 		    </div>
 		  </div>

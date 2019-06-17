@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User.search(params[:search])
+    @users = User.search(params[:search]).where.not(id: current_user.id).order('current_sign_in_at ASC')
   end
 
   private
