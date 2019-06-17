@@ -1,5 +1,10 @@
 <div class="container">
   <div class="row">
+  	<div class="col-8 offset-2">
+  	  <%= render 'layouts/search_form' %>
+    </div>
+  </div>
+  <div class="row">
     <div class="card-columns">
       <% @users.each do |user| %>
 		  <div class="card bg-dark" style="width: 18rem;">
@@ -10,19 +15,7 @@
 		  	<% end %>
 		    <div class="card-body p-2">
 		      <h5 class="card-title"><%= user.name %></h5>
-		      <h6 class="card-subtitle mb-2 text-muted">プレイ頻度:<%= user.play_time %>
-			  </h6>
-			  <section class="stats">
-			    <%= render 'layouts/stats',user: user %>
-			  </section>
-			    <p class="card-text">
-			      <small>
-			        <% user.games.each do |game| %>
-			          #<%= game.title %>
-			        <% end %>
-			      </small>
-			    </p>
-		      <%= link_to 'Profile', user_path(user.id),class: 'btn btn-primary btn-block' %>
+		      <p class="card-text"><%= link_to '詳細', user_path(user.id) %></p>
 		      <p class="card-text"><small class="text-muted">最終ログイン日:<%= user.current_sign_in_at.strftime("%Y-%m-%d") %></small></p>
 		    </div>
 		  </div>

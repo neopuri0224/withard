@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require infinite-scroll.pkgd.min
 //= require popper
 //= require bootstrap-sprockets
@@ -40,7 +39,7 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
-$(function () {
+$( document ).on('turbolinks:load', function() {
     var topBtn = $('#page-top');
     topBtn.hide();
     // スクロールが300に達したらボタン表示

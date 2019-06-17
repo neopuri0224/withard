@@ -4,18 +4,14 @@
       <%= image_tag (@user.profile_image),class: 'profile_image card-img-top' if @user.profile_image.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= @user.name %></h5>
-      </div>
-      <div class="card-body">
         <section class="stats">
-          <%= render 'layouts/stats' %>
+          <%= render 'layouts/stats', user: @user %>
         </section>
-      </div>
-      <div class="card-body">
         <% if @user.id == current_user.id %>
-          <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary" %>
+          <%= link_to "Edit my profile",edit_user_path(@user),class: "btn btn-primary btn-block" %>
         <% else %>
           <%= render 'layouts/follow_form', user: @user %>
-          <a href="#" class="btn btn-success">Talk!</a>
+          <a href="#" class="btn btn-success btn-block">Talk!</a>
         <% end %>
       </div>
     </div>

@@ -1,37 +1,43 @@
 <div class="container">
-    <h1>Edit your profile</h1>
-	<div class="row justify-content-center">
-		<%= form_for(@user) do |f| %>
-		<div class="col">
-		  <div class="form-group">
-		  <%= f.label :name,"お名前は？" %>
-		  <%= f.text_field :name,class: 'form-control' %>
-		  </div>
-		  <div class="form-group">
-		  <%= f.label :profile_image,"あなたとわかる画像を見せてください。" %>
-		  <%= f.file_field :profile_image, id: 'profile_image',class: 'form-control' %>
-		  </div>
-		  <img id="profile_image_prev" src="#" class='hidden'>
-		  <div class="form-group">
-		  <%= f.label :play_time,"どれくらいの頻度でゲームをプレイしてますか?" %>
-		  <%= f.select :play_time, User.play_times.keys.to_a, {}, class: 'form-control input-sm' %>
-		  </div>
-		  <div class="form-group">
-		  <%= f.label :game_category,"一番好きなゲームカテゴリは？" %><br>
-		  <%= f.fields_for :user_categories do |user_category| %>
-            <%= user_category.hidden_field :user_id %>
-            <%= user_category.collection_select :category_id, Category.all, :id, :name, class: 'form-control input-sm' %><br>
-          <% end %>
-          </div>
-          <%= f.fields_for :games do |game| %>
-		    <%= game.label :title,"今プレイしているゲームは？" %>
-		    <%= render 'game_fields', f: game, class: 'form-control' %>
-		    <div class="links">
-		      <%= link_to_add_association '＋ゲームを追加', f, :games, class: "btn btn-info" %>
+  <h1>プロフィール編集</h1>
+    <%= form_for(@user) do |f| %>
+	  <div class="row">
+		  <div class="col-6">
+		    <div class="form-group">
+		      <%= f.label :name,"お名前は？" %>
+		      <%= f.text_field :name,class: 'form-control' %>
 		    </div>
-		  <% end %>
-	      <%= f.submit "更新する",class: 'btn btn-primary' %>
-		</div>
-		<% end %>
-	</div>
+		    <div class="form-group">
+		      <%= f.label :profile_image,"あなたとわかる画像を見せてください。" %>
+		      <%= f.file_field :profile_image, id: 'profile_image',class: 'form-control' %>
+		    </div>
+		    <img id="profile_image_prev" src="#" class='hidden'>
+		    <div class="form-group">
+		      <%= f.label :play_time,"どれくらいの頻度でゲームをプレイしてますか?" %>
+		      <%= f.select :play_time, User.play_times.keys.to_a, {}, class: 'form-control input-sm' %>
+		    </div>
+		    <div class="form-group">
+		      <%= f.label :game_category,"一番好きなゲームカテゴリは？" %><br>
+		      <%= f.fields_for :user_categories do |user_category| %>
+                <%= user_category.hidden_field :user_id %>
+                <%= user_category.collection_select :category_id, Category.all, :id, :name, class: 'form-control input-sm' %><br>
+              <% end %>
+            </div>
+            <%= f.fields_for :games do |game| %>
+		      <%= game.label :title,"今プレイしているゲームは？" %>
+		      <%= render 'game_fields', f: game, class: 'form-control' %>
+		      <div class="links">
+		        <%= link_to_add_association '＋ゲームを追加', f, :games, class: "btn btn-info" %>
+		      </div>
+		    <% end %>
+		  </div>
+		  <div class="col-6">
+		  	<div class="form-group">
+		  		<%= f.label :introduction, "自己紹介" %>
+		  		<%= f.text_area :introduction, :placeholder => "例) 一緒にゲームしてくれる友達募集中！",class: 'form-control' %>
+		  	</div>
+	        <%= f.submit "更新する",class: 'btn btn-primary' %>
+		  </div>
+	  </div>
+    <% end %>
 </div>

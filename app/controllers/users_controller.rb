@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy,
-                                            :following, :followers]
+  before_action :authenticate_user!
 
   def index
   	@category = Category.find(params[:category_id])
@@ -9,10 +8,6 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-  	@user_category = UserCategory.find_by(user_id: @user.id)
-  	@category = Category.find_by(id: @user_category.category_id)
-  	@games = Game.where(user_id: @user.id)
-  	@posts = Post.where(user_id: @user.id)
     @current_user_entries = Entry.where(user_id: current_user.id)
     @user_entries = Entry.where(user_id: @user.id)
 
@@ -58,6 +53,10 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page])
     render 'show_follow'
+  end
+
+  def search
+    @users = User.search(params[:search]).where.not(id: current_user.id).order('current_sign_in_at ASC')
   end
 
   private

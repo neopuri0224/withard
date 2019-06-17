@@ -1,10 +1,10 @@
 <% if our_room == true %>
-  <%= link_to "Talk!",room_path(room_id),class: 'btn btn-success' %>
+  <%= link_to "Talk!",room_path(room_id),class: 'btn btn-success btn-block' %>
 <% else %>
   <%= form_for room do |f| %>
     <%= fields_for entry do |e| %>
       <%= e.hidden_field :user_id, value: user.id %>
     <% end %>
-    <%= f.submit "Talk!",class: 'btn btn-success' %>
+    <%= f.submit "Talk!",class: 'btn btn-success btn-block' %>
   <% end %>
 <% end %>

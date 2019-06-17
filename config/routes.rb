@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get 'rooms/index'
-  get 'rooms/show'
   root to: 'static_pages#top'
   get 'static_pages/top'
+  get 'users/search' => 'users#search'
   devise_for :users, controllers: {
         registrations: 'users/registrations',
       }

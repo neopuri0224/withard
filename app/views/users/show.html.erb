@@ -5,15 +5,11 @@
 		<%= image_tag (@user.profile_image),class: 'profile_image card-img-top' if @user.profile_image.attached? %>
 	    <div class="card-body p-2">
 		  <h5 class="card-title"><%= @user.name %></h5>
-		</div>
-		<div class="card-body p-2">
 	      <section class="stats">
-	        <%= render 'layouts/stats' %>
+	        <%= render 'layouts/stats',user: @user %>
 	      </section>
-		</div>
-		<div class="card-body p-2">
 		  <% if @user.id == current_user.id %>
-		    <%= link_to edit_user_path(@user),class: "btn btn-primary" do %>
+		    <%= link_to edit_user_path(@user),class: "btn btn-primary btn-block" do %>
 		      <p class="mb-0">プロフィール編集 <i class="far fa-edit"></i></p>
 		    <% end %>
 		  <% else %>
@@ -25,24 +21,34 @@
     </div>
     <div class="col-8 offset-1">
 	  <div class="card bg-secondary">
-	    <div class="card-header">
-	      <h1>Profile</h1>
-	    </div>
 	    <div class="card-body">
-    	  <%= @user.introduction %>
+    	  <p class="card-text"><%= @user.introduction %></p>
+    	</div>
+	      <ul class="list-group list-group-flush">
+	        <li class="list-group-item bg-secondary">
+	          <h5><strong>好きなゲームカテゴリ</strong></h5>
+	            <p class="card-text">
+                  <% @user.categories.each do |category| %>
+	      	        <%= category.name %>
+	      	      <% end %>
+	      	    </p>
+	        </li>
+	        <li class="list-group-item bg-secondary">
+	          <h5><strong>プレイしているゲーム</strong></h5>
+			    <p class="card-text">
+			      <small>
+			        <% @user.games.each do |game| %>
+			          #<%= game.title %>
+			        <% end %>
+			      </small>
+			    </p>
+	        </li>
+	      </ul>
 	    </div>
-	    <ul class="list-group list-group-flush">
-	      <li class="list-group-item bg-secondary"><%= @category.name %></li>
-	      <li class="list-group-item bg-secondary">
-	      	<% @games.each do |game| %>
-	      	  <%= game.title %>
-	      	<% end %>
-	      </li>
-	   </ul>
 	  </div><br>
       <div id="posts">
       	<div class="post">
-	      <% @posts.each do |post| %>
+	      <% @user.posts.each do |post| %>
 		      <div class="card post bg-secondary shadow-lg mb-3">
 		        <div class="media">
 		          <a href="#" class="align-self-start mr-3">
