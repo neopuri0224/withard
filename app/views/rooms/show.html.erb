@@ -35,7 +35,7 @@
 			<% end %>
 			<%= form_for @message do |f| %>
 			  <div class="input-group mb-3">
-			    <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,class: 'form-control','area-describedby': "button-addon2" %>
+			    <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,required: true,class: 'form-control','area-describedby': "button-addon2" %>
 			    <%= f.hidden_field :room_id, :value => @room.id %>
 			    <div class="input-group-append">
 			      <%= f.submit "送信",id: "button-addon2",class: 'btn btn-primary mt-0' %>
