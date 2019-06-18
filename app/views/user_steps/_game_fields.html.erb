@@ -1,6 +1,6 @@
   <div class="nested-fields">
     <div class="form-group">
-      <%= f.text_field :title, placeholder:"ゲームタイトル", class: 'form-control input-sm' %>
+      <%= f.text_field :title, placeholder:"ゲームタイトル",required: true, class: 'form-control input-sm' %>
       <%= link_to_remove_association "削除", f, class: "btn btn-danger btn-sm" %>
     </div>
   </div>

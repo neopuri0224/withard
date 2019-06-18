@@ -6,7 +6,7 @@
       <%= form_with model: @user, url: wizard_path do |f| %>
         <div class="form-group">
           <%= f.label :name,"お名前は？" %>
-          <%= f.text_field :name,class: 'form-control' %>
+          <%= f.text_field :name,required: true,class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :profile_image,"あなたとわかる画像を見せてください。" %><br>
@@ -14,7 +14,7 @@
           <img id="profile_image_prev" src="#" class='hidden'>
           <% if @user.profile_image.attached? %>
             <div class="custom-file">
-              <%= image_tag profile_image, class: 'profile_present_image' %>
+              <%= image_tag @user.profile_image.variant(resize:'100x100'), class: 'profile_present_image' %>
             </div>
           <% end %>
         </div>
