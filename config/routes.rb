@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: 'static_pages#top'
   get 'static_pages/top'
   get 'users/search' => 'users#search'
