@@ -35,9 +35,9 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false },
-                    on: :create
+                    on: :create #ステップフォームでstep2以降updateアクションが動く際にcan't be blank!のエラーが発生してしまうのを防ぐためcreateアクションに限定
   validates :password, presence: true, length: { minimum: 6 },
-                    on: :create
+                    on: :create #ステップフォームでstep2以降updateアクションが動く際にcan't be blank!のエラーが発生してしまうのを防ぐためcreateアクションに限定
 
 
   # ユーザーをフォローする
@@ -59,7 +59,7 @@ class User < ApplicationRecord
     if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
       User.where(['name LIKE ?', "%#{search}%"])
     else
-      User.all #全て表示。
+      User.all #全て表示
     end
   end
 

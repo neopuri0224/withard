@@ -39,6 +39,7 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
+//トップへ戻るボタン
 $( document ).on('turbolinks:load', function() {
     var topBtn = $('#page-top');
     topBtn.hide();
