@@ -1,7 +1,9 @@
 class Ability
   include CanCan::Ability
 
+  #cancanを使ったRailsAdminで作成したページへのアクセス制限
   def initialize(user)
+    #adminがtrueかどうかを判定
     if user.try(:admin?)
       can :access, :rails_admin
       can :manage, :all

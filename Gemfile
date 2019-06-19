@@ -60,17 +60,17 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'
-gem 'wicked'
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'cocoon'
-gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.1'
-gem 'kaminari'
-gem 'pry-byebug'
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
-gem "aws-sdk-s3", require: false
-gem 'rails_admin', '~> 1.3'
-gem 'cancancan', '~> 2.0'
+gem 'devise' #ログイン機能実装用
+gem 'wicked' #ステップフォーム実装用
+gem 'omniauth' #Twitterログイン機能実装用
+gem 'omniauth-twitter' #Twitterログイン機能実装用
+gem 'cocoon' #ネストフォーム作成用
+gem 'jquery-rails' #jquery
+gem 'bootstrap', '~> 4.1.1' #Bootstrap4
+gem 'kaminari' #ページネーション実装
+gem 'pry-byebug' #エラー検証
+gem "refile", require: "refile/rails", github: 'manfe/refile' #画像投稿機能用(今回はカテゴリーテーブルの画像に使用しました。)
+gem "refile-mini_magick" #画像サイズ調整用
+gem "aws-sdk-s3", require: false #ActiveStorage/S3での画像アップロード機能実装用
+gem 'rails_admin', '~> 1.3' #管理者ページ用
+gem 'cancancan', '~> 2.0' #アクセス制限用(今回はRails_admin用ページへの制限をかけるため)

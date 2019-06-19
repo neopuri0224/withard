@@ -1,6 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
+#無限スクロール機能
 $(document).on 'turbolinks:load', ->
   $('#posts').infiniteScroll
     path: "nav.pagination a[rel=next]"

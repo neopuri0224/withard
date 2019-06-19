@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    if @user.save
+    if @user.save #ステップフォーム機能を実装するためDeviceのカスタマイズ
       session[:user_id] = @user.id
     end
   end
