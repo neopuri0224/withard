@@ -62,7 +62,9 @@
 					<% if post.post_image.attached? %>
 					    <%= image_tag post.post_image.variant(resize:'100x200').processed %> <br>
 					<% end %>
-			        <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %></p>
+					<% if post.user_id == current_user %>
+			          <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %></p>
+			        <% end %>
 			      </div>
 		        </div>
 		      </div>
