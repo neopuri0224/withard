@@ -1,9 +1,50 @@
 <div class="container">
-  <div class="jumbotron mt-4" style= "background-color:#343a40;">
-    <h1 class="display-4">Welcome to <%= image_tag 'logo2.png' %></h1>
-    <p class="lead">これは単純なヒーローユニット、注目のコンテンツや情報に特別な注意を喚起するためのシンプルなジャンボトロンスタイルのコンポーネント。</p>
-    <hr class="my-4">
-    <p>より大きなコンテナの範囲内でコンテンツに空間をあけるため、文字の体裁と空白用のユーティリティクラスを使用している。</p>
-    <%= link_to "Sign up here!", new_user_registration_path,class: 'btn btn-primary btn-lg' %>
-  </div><!-- /.jumbotron -->
-</div><!-- /.container -->
+  <div class="row">
+    <div class="jumbotron mt-4 bg-dark">
+      <h1 class="display-4" style="color: #764bc4;"><strong><i>Welcome to</i></strong>    <%= image_tag 'logo2.png' %></h1>
+      <p class="lead">ようこそWith-ard(ウィザード)へ！想像したことが何でもできるまるで魔法のようなゲームの世界、そんな世界を操るあなたはまさにウィザード(魔法使い)ですね。ウィザードの皆様が集まり、共にゲームをプレイするために交流できる場を用意させていただきました。</p>
+      <hr class="my-4">
+      <p>With-ardの世界に入るためには、あなたの情報が必要です。初めての方は<span class="bg-primary" style="border-radius: 15%;">  Sign up  </span>から、既に登録していただいている方は<span class="bg-success" style="border-radius: 15%;">  Log in  </span>から、ごゆっくりお楽しみください。</p>
+      <div class="btn-group d-flex" role="group" aria-label="...">
+		<%= link_to new_user_registration_path,class: 'btn btn-primary w-100' do %>
+		  <h5 class="mb-0">Sign up <i class="fas fa-user-plus"></i></h5>
+		<% end %>
+		<%= link_to new_user_session_path,class: 'btn btn-success w-100' do %>
+		  <h5 class="mb-0">Log in <i class="fas fa-sign-in-alt"></i></h5>
+		<% end %>
+	  </div>
+    </div>
+  </div>
+  <div class="row info">
+    <div class="col-4">
+      <div class="card bg-dark">
+	    <div class="card-body">
+	      <h1 class="card-title text-center"><span class="display-1"><i class="fas fa-comments"></i></span></h1>
+	      <h3 class="card-subtitle mb-2 text-center"> T a l k ! </h5>
+	      <hr class="my-4">
+	      <p class="card-text">With-ardに登録しているユーザーと１対１のチャット形式でコミュニケーションをとることができます。同じ趣味を持つユーザーが見つかったら、是非気軽にTalkしてみてください。</p>
+	    </div>
+	  </div>
+    </div>
+    <div class="col-4">
+      <div class="card bg-dark">
+	    <div class="card-body">
+	      <h1 class="card-title text-center"><span class="display-1"><i class="fas fa-list-alt"></i></span></h5>
+	      <h3 class="card-subtitle mb-2 text-center"> P o s t ! </h6>
+	      <hr class="my-4">
+	      <p class="card-text">With-ardに登録しているユーザーは、自分の近況を画像とともに自由に投稿することができます。あなたのプレイした面白かったゲームや、日々の記録を是非発信してみてください。</p>
+	    </div>
+	  </div>
+    </div>
+    <div class="col-4">
+      <div class="card bg-dark">
+	    <div class="card-body">
+	      <h1 class="card-title text-center"><span class="display-1"><i class="fas fa-search"></i></span></h5>
+	      <h3 class="card-subtitle mb-2 text-center"> F i n d ! </h6>
+	      <hr class="my-4">
+	      <p class="card-text">With-ardに登録しているユーザーを探すことができます。ユーザーの名前や、好きなゲームカテゴリから検索してみてください。きっとあなたと同じ趣味を持つユーザーが見つかるはずです。</p>
+	    </div>
+	  </div>
+    </div>
+  </div>
+</div>

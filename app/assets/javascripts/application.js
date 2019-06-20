@@ -61,7 +61,7 @@ $( document ).on('turbolinks:load', function() {
 });
 
 $( document ).on('turbolinks:load', function(){
-  window.scrollTo(0,document.body.scrollHeight);
+  window.scrollTo(0,$('#talk-room').height());
 });
 
 $( document ).on('turbolinks:load', function () {

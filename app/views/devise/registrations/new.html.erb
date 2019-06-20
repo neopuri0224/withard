@@ -13,7 +13,7 @@
         <div class="form-group">
           <%= f.label :password %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(※<%= @minimum_password_length %>文字以上)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password",required: true,class: "form-control" %>
         </div>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "次へ",class: 'btn btn-primary' %>
+          <%= f.submit " 次へ＞",class: 'btn btn-primary' %>
         </div>
       <% end %>
 
