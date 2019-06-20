@@ -59,3 +59,11 @@ $( document ).on('turbolinks:load', function() {
         return false;
     });
 });
+
+$( document ).on('turbolinks:load', function(){
+  window.scrollTo(0,document.body.scrollHeight);
+});
+
+$( document ).on('turbolinks:load', function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
