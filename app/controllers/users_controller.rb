@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   	@user_category = @user.user_categories
     #中間テーブルを更新する際に、unique制約に引っかかってしまったためupdate前に削除
   	@user_category.delete_all
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
       render :edit
