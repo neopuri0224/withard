@@ -1,49 +1,61 @@
-<div class="container">
+<div class="container overview" style="overflow:auto;" id="auto_scroll">
 	<div class="row">
+	    <div class="col-12">
+	      <div class="talk-header bg-secondary fixed-top">
+		      <h5>
+		      	<% @entries.each do |e| %>
+		      	  <strong>
+		      	  	<%= link_to user_path(e.user_id),class: 'btn btn-outline-light' do %>
+                      <%= e.user.name %>
+                    <% end %>
+		      	  	さん
+		      	  </strong>
+		        <% end %>
+		        のTalk
+		      </h5>
+		  </div>
+	    </div>
 	    <div class="col-10 offset-1">
-			<h1>DM</h1>
-
-			<% @entries.each do |e| %>
-			  <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.name%>さん</a></strong></h5>
-			<% end %>
-			<% if @messages.present? %>
-			  <% @messages.each do |m| %>
-			    <ul class="list-unstyled">
-			      <% if m.user.id == current_user.id %>
-			        <li class="media">
-			          <div class="media-body text-right balloon1-right">
-			            <strong><%= m.content %></strong>
-			          </div>
-		              <% if m.user.profile_image.attached? %>
-			            <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'ml-3' %>
-			          <% end %>
-			        </li>
-			      <% else %>
-			        <li class="media">
-		              <% if m.user.profile_image.attached? %>
-			            <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'mr-3' %>
-			          <% end %>
-			          <div class="media-body  balloon1-left">
-			            <strong><%= m.content %></strong>
-			          </div>
-			        </li>
-			      <% end %>
-			    </ul>
+			<div class="talk">
+			  <% if @messages.present? %>
+			    <% @messages.each do |m| %>
+			      <ul class="list-unstyled">
+			        <% if m.user.id == current_user.id %>
+			          <li class="media">
+			            <div class="media-body text-right balloon1-right">
+			              <strong><%= m.content %></strong>
+			            </div>
+		                <% if m.user.profile_image.attached? %>
+			              <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'ml-3' %>
+			            <% end %>
+			          </li>
+			        <% else %>
+			          <li class="media">
+		                <% if m.user.profile_image.attached? %>
+			              <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'mr-3' %>
+			            <% end %>
+			            <div class="media-body  balloon1-left">
+			              <strong><%= m.content %></strong>
+			            </div>
+			          </li>
+			        <% end %>
+			      </ul>
+			    <% end %>
+			  <% else %>
+			    <h3 class="text-center">メッセージはまだありません</h3>
 			  <% end %>
-			<% else %>
-			  <h3 class="text-center">メッセージはまだありません</h3>
-			<% end %>
-			<%= form_for @message do |f| %>
-			  <div class="input-group mb-3">
-			    <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,class: 'form-control','area-describedby': "button-addon2" %>
-			    <%= f.hidden_field :room_id, :value => @room.id %>
-			    <div class="input-group-append">
-			      <%= f.submit "送信",id: "button-addon2",class: 'btn btn-primary mt-0' %>
+			</div>
+			<div class="fixed-bottom bg-secondary">
+			  <%= form_for @message do |f| %>
+			    <div class="input-group mb-3 mt-3">
+			      <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,class: 'form-control','area-describedby': "button-addon2" %>
+			      <%= f.hidden_field :room_id, :value => @room.id %>
+			      <div class="input-group-append">
+			        <%= f.submit "送信",id: "button-addon2",class: 'btn btn-primary mt-0' %>
+			      </div>
 			    </div>
-			  </div>
-			<% end %>
-
-			<%= link_to "トーク一覧に戻る", rooms_path %>
+			  <% end %>
+			 </div>
 	    </div>
 	</div>
 </div>
