@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
   	@post = Post.new
+    #新しい投稿が上に表示されるよう並び替える。
   	@posts = Post.page(params[:page]).per(10).reverse_order
   end
 

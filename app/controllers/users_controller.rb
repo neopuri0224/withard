@@ -1,31 +1,34 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy,
-                                            :following, :followers]
+  before_action :authenticate_user!
 
   def index
   	@category = Category.find(params[:category_id])
+    @categories = Category.all
+    #自分以外のユーザーを取得
   	@users = @category.users.where.not(id: current_user.id).order('current_sign_in_at ASC')
   end
 
   def show
   	@user = User.find(params[:id])
-  	@user_category = UserCategory.find_by(user_id: @user.id)
-  	@category = Category.find_by(id: @user_category.category_id)
-  	@games = Game.where(user_id: @user.id)
-  	@posts = Post.where(user_id: @user.id)
     @current_user_entries = Entry.where(user_id: current_user.id)
     @user_entries = Entry.where(user_id: @user.id)
 
+    #@user.idがcurrent_user.idではなかったら
     unless @user.id == current_user.id
       @current_user_entries.each do |cu|
         @user_entries.each do |u|
+          #cu(Entry.user_id == current_user.id)とu(Entry.user_id == @user.id)が同じだったら
           if cu.room_id == u.room_id
+            #@our_room(current_userと@userの間にroomが存在するかを判別するためのインスタンス変数)をtrueにする
             @our_room = true
+            #room/showにアクセスするために必要なID
             @room_id = cu.room_id
           end
         end
       end
+      #@roomが存在しなかったら
       unless @our_room
+        #RoomとEntryのモデルオブジェクトを作成
         @room = Room.new
         @entry = Entry.new
       end
@@ -40,6 +43,7 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   	@user_category = @user.user_categories
+    #中間テーブルを更新する際に、unique制約に引っかかってしまったためupdate前に削除
   	@user_category.delete_all
     if @user.update_attributes(user_params)
       redirect_to user_path(@user.id)
@@ -58,6 +62,11 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page])
     render 'show_follow'
+  end
+
+  def search
+    @users = User.search(params[:search]).where.not(id: current_user.id).order('current_sign_in_at ASC')
+    @categories = Category.all
   end
 
   private

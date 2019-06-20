@@ -5,21 +5,17 @@
 		<%= image_tag (current_user.profile_image),class: 'profile_image card-img-top' if current_user.profile_image.attached? %>
 	    <div class="card-body p-2">
 		  <h5 class="card-title"><%= current_user.name %></h5>
-		</div>
-		<div class="card-body p-2">
 	      <section class="stats">
-	        <%= render 'layouts/stats' %>
+	        <%= render 'layouts/stats', user: current_user %>
 	      </section>
-		</div>
-		<div class="card-body p-2">
-		  <%= link_to 'My page', user_path(current_user.id),class: "btn btn-primary" %>
-		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+		  <%= link_to 'My page', user_path(current_user.id),class: "btn btn-primary btn-block" %>
+		  <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
 	        Post!  <i class="far fa-comment"></i>
 	      </button>
 	    </div>
 	  </div>
 	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
-	    <div class="modal-dialog modal-bottom modal-lg" role="document">
+	    <div class="modal-dialog modal-bottom modal-lg shadow-lg" role="document">
 	      <div class="modal-content bg-secondary">
 	        <div class="modal-header">
 	          <h5 class="modal-title" id="exampleModalLabel">Post!</h5>
@@ -31,10 +27,10 @@
 		        <div class="modal-body">
 				  <div class="form-group">
 				    <%= f.label :post_content %>
-					<%= f.text_area :post_content,class: 'form-control' %>
+					<%= f.text_area :post_content, :placeholder => "例) 今日もゲームします！",required: true,class: 'form-control' %>
 				  </div>
 				  <div class="form-group">
-					  	<%= f.label :post_image %>
+					  	<%= f.label :post_image,"画像" %>
 					  	<%= f.file_field :post_image,class: 'form-control' %>
 				  </div>
 		        </div>
@@ -52,27 +48,32 @@
       	<div class="post">
 	      <% @posts.each do |post| %>
 		      <div class="card post bg-secondary shadow-lg mb-3">
-		        <div class="media">
-		          <%= link_to user_path(post.user_id),class: "align-self-start mr-3" do %>
-		            <% if post.user.profile_image.attached? %>
-			          <%= image_tag post.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;' %>
-			        <% end %>
-			      <% end %>
-			      <div class="media-body">
-			        <h5 class="mt-0"><%= post.user.name %></h5>
-			        <p><%= post.post_content %>
-					<% if post.post_image.attached? %>
-					    <%= image_tag post.post_image.variant(resize:'100x200').processed %> <br>
-					<% end %>
-			        <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %></p>
-			        <div class="float-right mr-1">
-			        	<p>
-			        	  <small>
-			        		<%= post.created_at.strftime("%Y-%m-%d") %>
-			        	  </small>
-			        	</p>
+		      	<div class="card-body">
+			        <div class="media">
+			          <%= link_to user_path(post.user_id),class: "align-self-start mr-3" do %>
+			            <% if post.user.profile_image.attached? %>
+				          <%= image_tag post.user.profile_image.variant(resize:'100x100').processed,style: 'border-radius: 50%;' %>
+				        <% end %>
+				      <% end %>
+				      <div class="media-body">
+				        <h5 class="mt-0"><%= post.user.name %></h5>
+				        <hr>
+				        <p class="card-text"><%= post.post_content %></p>
+						<% if post.post_image.attached? %>
+						    <%= image_tag post.post_image.variant(resize:'100x200').processed %> <br>
+						<% end %>
+						<% if post.user_id == current_user.id %>
+				          <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %>
+				        <% end %>
+				        <div class="float-right mr-1">
+				        	<p class="card-text">
+				        	  <small>
+				        		<%= post.created_at.strftime("%Y-%m-%d") %>
+				        	  </small>
+				        	</p>
+				        </div>
+				      </div>
 			        </div>
-			      </div>
 		        </div>
 		      </div>
 	      <% end %>

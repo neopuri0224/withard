@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
+
   has_many :games, dependent: :destroy
 
   has_many :posts, dependent: :destroy
@@ -29,10 +30,15 @@ class User < ApplicationRecord
 
   enum play_time: [:"ほとんど毎日",:"週に４~５日",:"週に2~3日",:"週に1日",:"月に2~3日",:"月に1日以下"]
 
-  #他のステップでユーザの他の情報が保存されたときに入力チェックが起動されないようにする。
-  #validates_format_of :name, :without =&gt; /\W/, :allow_blank =&gt; true
-  #step2でのみValidationを有効にする。
-  #validates_presence_of :name, if: :on_step2_step?
+  before_save { email.downcase! }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false },
+                    on: :create #ステップフォームでstep2以降updateアクションが動く際にcan't be blank!のエラーが発生してしまうのを防ぐためcreateアクションに限定
+  validates :password, presence: true, length: { minimum: 6 },
+                    on: :create #ステップフォームでstep2以降updateアクションが動く際にcan't be blank!のエラーが発生してしまうのを防ぐためcreateアクションに限定
+
 
   # ユーザーをフォローする
   def follow(other_user)
@@ -47,6 +53,14 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def self.search(search) #self.でクラスメソッドとしている
+    if search # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
+      User.where(['name LIKE ?', "%#{search}%"])
+    else
+      User.all #全て表示
+    end
   end
 
 end

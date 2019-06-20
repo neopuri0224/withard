@@ -1,11 +1,10 @@
-<div class="container overview" style="overflow:auto;" id="auto_scroll">
-	<div class="row">
-	    <div class="col-12">
-	      <div class="talk-header bg-secondary fixed-top">
+<div class="container">
+	<div class="row talk-header bg-secondary fixed-top">
+	        <div class="col-6">
 		      <h5>
 		      	<% @entries.each do |e| %>
 		      	  <strong>
-		      	  	<%= link_to user_path(e.user_id),class: 'btn btn-outline-light' do %>
+		      	  	<%= link_to user_path(e.user_id),class: 'btn btn-outline-light ml-3' do %>
                       <%= e.user.name %>
                     <% end %>
 		      	  	さん
@@ -13,10 +12,16 @@
 		        <% end %>
 		        のTalk
 		      </h5>
-		  </div>
-	    </div>
+		    </div>
+		    <div class="col-6">
+			  <%= link_to room_path(@room.id),class: 'btn btn-primary mr-2 mb-2 btn-lg float-right',"data-toggle": "tooltip", title: "受信メッセージを読み込む" do %>
+				<i class="fas fa-sync-alt"></i>
+			  <% end %>
+		    </div>
+	</div>
+	<div class="row">
 	    <div class="col-10 offset-1">
-			<div class="talk">
+			<div id="talk">
 			  <% if @messages.present? %>
 			    <% @messages.each do |m| %>
 			      <ul class="list-unstyled">
@@ -35,7 +40,7 @@
 			              <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'mr-3' %>
 			            <% end %>
 			            <div class="media-body  balloon1-left">
-			              <strong><%= m.content %></strong>
+			              <h6><strong><%= m.content %></strong></h6>
 			            </div>
 			          </li>
 			        <% end %>
@@ -48,14 +53,14 @@
 			<div class="fixed-bottom bg-secondary">
 			  <%= form_for @message do |f| %>
 			    <div class="input-group mb-3 mt-3">
-			      <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,class: 'form-control','area-describedby': "button-addon2" %>
+			      <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,class: 'form-control','area-describedby': "button-addon2",id: "message" %>
 			      <%= f.hidden_field :room_id, :value => @room.id %>
 			      <div class="input-group-append">
-			        <%= f.submit "送信",id: "button-addon2",class: 'btn btn-primary mt-0' %>
+			        <%= f.submit "送信",class: 'btn btn-primary mt-0' %>
 			      </div>
 			    </div>
 			  <% end %>
-			 </div>
+			</div>
 	    </div>
 	</div>
 </div>

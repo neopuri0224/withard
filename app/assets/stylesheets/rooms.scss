@@ -59,10 +59,11 @@
 
 .talk-header {
   margin-top: 56px;
-  padding-left: 5%;
+
 }
 
-.talk {
+#talk {
   padding-top: 70px;
   padding-bottom: 100px;
+  overflow: auto;
 }

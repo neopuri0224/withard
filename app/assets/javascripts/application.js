@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require infinite-scroll.pkgd.min
 //= require popper
 //= require bootstrap-sprockets
@@ -40,7 +39,8 @@ $( document ).on('turbolinks:load', function() {
   });
 });
 
-$(function () {
+//トップへ戻るボタン
+$( document ).on('turbolinks:load', function() {
     var topBtn = $('#page-top');
     topBtn.hide();
     // スクロールが300に達したらボタン表示
@@ -61,5 +61,9 @@ $(function () {
 });
 
 $( document ).on('turbolinks:load', function(){
-    $(".overview").scrollTop($("#auto_scroll")[0].scrollHeight);
+  window.scrollTo(0,document.body.scrollHeight);
 });
+
+$( document ).on('turbolinks:load', function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
