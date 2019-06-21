@@ -1,23 +1,23 @@
 <div class="container" id="talk-room">
 	<div class="row talk-header bg-secondary fixed-top">
-	        <div class="col-6">
-		      <h5>
-		      	<% @entries.each do |e| %>
-		      	  <strong>
-		      	  	<%= link_to user_path(e.user_id),class: 'btn btn-outline-light ml-3' do %>
-                      <%= e.user.name %>
-                    <% end %>
-		      	  	さん
-		      	  </strong>
-		        <% end %>
+	    <div class="col-6">
+		  <h5>
+		    <% @entries.each do |e| %>
+		      <strong>
+		      	<%= link_to user_path(e.user_id),class: 'btn btn-outline-light ml-3' do %>
+                  <%= e.user.name %>
+                <% end %>
+		      	 さん
+		      </strong>
+		    <% end %>
 		        のTalk
-		      </h5>
-		    </div>
-		    <div class="col-6">
+		  </h5>
+		</div>
+		<div class="col-6">
 			  <%= link_to room_path(@room.id),class: 'btn btn-primary mr-2 mb-2 btn-lg float-right',"data-toggle": "tooltip", title: "受信メッセージを読み込む" do %>
 				<i class="fas fa-sync-alt"></i>
 			  <% end %>
-		    </div>
+		</div>
 	</div>
 	<div class="row">
 	    <div class="col-10 offset-1">

@@ -34,6 +34,8 @@ class RoomsController < ApplicationController
     @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
     #paramsで送信されたuser_idを持つユーザーをroomの参加者として登録
     @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(:room_id => @room.id))
+    flash[:notice] = "#{@entry2.user.name}さんとのトークルームを作成しました。"
     redirect_to room_path(@room)
   end
+
 end

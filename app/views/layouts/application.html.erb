@@ -4,7 +4,6 @@
     <title>Withard</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,60 +15,63 @@
     <%= video_tag "bg_universe2_07_720.mp4", autoplay: true, loop: true, muted: true, class: 'background-video' %>
     <div class="main">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-lg">
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+      <%= link_to root_path,class: 'navbar-brand' do %>
+          <%= image_tag 'logo.png' %>
+      <% end %>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navbar" aria-controls="Navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <%= image_tag 'logo.png' %>
-        <div class="collapse navbar-collapse" id="Navber">
-          <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-              <% if current_user.try(:admin?) %>
-                <li class="nav-item">
-                  <%= link_to rails_admin_path,class: 'nav-link' do %>
-                    <p class="mb-0">Admin <i class="fas fa-users-cog"></i></p>
-                  <% end %>
-                </li>
-              <% end %>
+      </button>
+      <div class="collapse navbar-collapse" id="Navber">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <% if current_user.try(:admin?) %>
               <li class="nav-item">
-                <%= link_to user_path(current_user),class: 'nav-link' do %>
-                  <p class="mb-0">My page <i class="fas fa-user-astronaut"></i></p>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to rooms_path,class: 'nav-link' do %>
-                  <p class="mb-0">Talk <i class="fas fa-comments"></i></p>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to posts_path,class: 'nav-link' do %>
-                  <p class="mb-0">Posts <i class="fas fa-list-alt"></i></p>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to category_index_path,class: 'nav-link' do %>
-                  <p class="mb-0">Find user <i class="fas fa-search"></i></p>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link' do %>
-                  <p class="mb-0">Log out <i class="fas fa-sign-out-alt"></i></p>
-                <% end %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to new_user_registration_path,class: 'nav-link' do %>
-                  <p class="mb-0">Sign up <i class="fas fa-user-plus"></i></p>
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to new_user_session_path,class: 'nav-link' do %>
-                  <p class="mb-0">Log in <i class="fas fa-sign-in-alt"></i></p>
+                <%= link_to rails_admin_path,class: 'nav-link' do %>
+                  <p class="mb-0">Admin <i class="fas fa-users-cog"></i></p>
                 <% end %>
               </li>
             <% end %>
-          </ul>
-        </div>
+            <li class="nav-item">
+              <%= link_to user_path(current_user),class: 'nav-link' do %>
+                 <p class="mb-0">My page <i class="fas fa-user-astronaut"></i></p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to rooms_path,class: 'nav-link' do %>
+                <p class="mb-0">Talk <i class="fas fa-comments"></i></p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to posts_path,class: 'nav-link' do %>
+                <p class="mb-0">Posts <i class="fas fa-list-alt"></i></p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to category_index_path,class: 'nav-link' do %>
+                <p class="mb-0">Find user <i class="fas fa-search"></i></p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link' do %>
+                 <p class="mb-0">Log out <i class="fas fa-sign-out-alt"></i></p>
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to new_user_registration_path,class: 'nav-link' do %>
+                <p class="mb-0">Sign up <i class="fas fa-user-plus"></i></p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_session_path,class: 'nav-link' do %>
+                <p class="mb-0">Log in <i class="fas fa-sign-in-alt"></i></p>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
       </nav>
+      <%= render "layouts/flash" %>
       <%= yield %>
       <div id="page-top">
         <a href="#">
