@@ -1,0 +1,13 @@
+<div class="flash-box">
+  <% if flash[:notice] %>
+    <div class="flash alert alert-success">
+      <%= flash[:notice] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+    </div>
+  <% elsif flash[:warning]%>
+    <div class="flash alert alert-warning">
+      <%= flash[:warning] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+    </div>
+  <% end %>
+</div>

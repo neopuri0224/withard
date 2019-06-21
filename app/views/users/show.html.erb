@@ -20,22 +20,22 @@
 	  </div>
     </div>
     <div class="col-8 offset-1">
-	  <div class="card bg-secondary">
+	  <div class="card bg-dark">
 	    <div class="card-body">
-	      <h5><strong>自己紹介</strong></h5>
+	      <h5><strong>【自己紹介】</strong></h5>
     	  <p class="card-text"><%= @user.introduction %></p>
     	</div>
 	    <ul class="list-group list-group-flush">
-	      <li class="list-group-item bg-secondary">
-	        <h5><strong>好きなゲームカテゴリ</strong></h5>
+	      <li class="list-group-item bg-dark">
+	        <h5><strong>【好きなゲームカテゴリ】</strong></h5>
 	          <p class="card-text">
                 <% @user.categories.each do |category| %>
 	      	      <%= category.name %>
 	      	    <% end %>
 	      	  </p>
 	      </li>
-	      <li class="list-group-item bg-secondary">
-	        <h5><strong>プレイしているゲーム</strong></h5>
+	      <li class="list-group-item bg-dark">
+	        <h5><strong>【プレイしているゲーム】</strong></h5>
 			  <p class="card-text">
 			    <small>
 			      <% @user.games.each do |game| %>
@@ -49,7 +49,7 @@
       <div id="posts">
       	<div class="post">
 	      <% @user.posts.each do |post| %>
-		      <div class="card post bg-secondary shadow-lg mb-3">
+		      <div class="card post bg-dark shadow-lg mb-3">
 		        <div class="media">
 		          <a href="#" class="align-self-start mr-3">
 		          <% if post.user.profile_image.attached? %>

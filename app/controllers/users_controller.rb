@@ -49,8 +49,10 @@ class UsersController < ApplicationController
     #中間テーブルを更新する際に、unique制約に引っかかってしまったためupdate前に削除
   	@user_category.delete_all
     if @user.update(user_params)
+      flash[:notice] = "ユーザー情報の更新に成功しました。"
       redirect_to user_path(@user.id)
     else
+      flash[:warning] = "ユーザー情報の更新に失敗しました。もう一度登録内容を確認してください。"
       render :edit
     end
   end
