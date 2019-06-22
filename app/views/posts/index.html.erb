@@ -60,7 +60,7 @@
 				        <hr>
 				        <p class="card-text"><%= post.post_content %></p>
 						<% if post.post_image.attached? %>
-						    <%= image_tag post.post_image.variant(resize:'100x200').processed %> <br>
+						    <%= image_tag post.post_image.variant(resize:'300x300').processed %> <br>
 						<% end %>
 						<% if post.user_id == current_user.id %>
 				          <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %>

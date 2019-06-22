@@ -14,7 +14,7 @@
           <img id="profile_image_prev" src="#" class='hidden'>
           <% if @user.profile_image.attached? %>
             <div class="custom-file">
-              <%= image_tag @user.profile_image.variant(resize:'100x100'), class: 'profile_present_image' %>
+              <%= image_tag @user.profile_image.variant(resize:'200x200'), class: 'profile_present_image' %>
             </div>
           <% end %>
         </div>
