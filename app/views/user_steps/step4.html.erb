@@ -2,7 +2,7 @@
   <div class="row justify-content-center align-items-center step-field">
     <div class="col-6">
       <h2><strong>どんなゲームをしていますか？</strong></h2><br>
-      <%= form_with model: @user, url: wizard_path do |f| %>
+      <%= form_for @user, url: wizard_path do |f| %>
         <div class="form-group">
           <%= f.label :game_category,"一番好きなゲームカテゴリは？" %><br />
           <div class="form-group">

@@ -48,6 +48,7 @@
 	  </div><br>
       <div id="posts">
       	<div class="post">
+      	  <h5><%= @user.name %>さんの投稿</h5>
 	      <% @user.posts.each do |post| %>
 		      <div class="card post bg-dark shadow-lg mb-3">
 		        <div class="media">

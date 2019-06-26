@@ -3,7 +3,7 @@
     <div class="col-6">
       <h2><strong>どれくらいの頻度で<br>
                   ゲームをプレイしてますか？</strong></h2><br>
-      <%= form_with model: @user, url: wizard_path do |f| %>
+      <%= form_for @user, url: wizard_path do |f| %>
         <div class="form-group">
           <%= f.select :play_time, User.play_times.keys.to_a, {}, class: 'form-control input-sm' %>
         </div>
