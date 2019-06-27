@@ -1,4 +1,4 @@
-class CategoryController < ApplicationController
+class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index #カテゴリー一覧ページ
