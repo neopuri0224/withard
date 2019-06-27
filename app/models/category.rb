@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-	has_many :user_categories
-	has_many :users, through: :user_categories
-	attachment :image #refile用
+  has_many :user_categories
+  has_many :users, through: :user_categories
+  attachment :image #refile用
 end

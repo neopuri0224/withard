@@ -22,32 +22,60 @@ With-ardは、ゲーマー向けのコミュニケーション用SNSです。
 2. ログイン後は全ユーザーの投稿一覧ページにリダイレクトされます。メニューバーから各種機能を利用できます。
 3. Post!でつぶやきを投稿して、With-ardユーザーからの注目を集めましょう！
 4. Find User!では10種類のゲームカテゴリから、With-ardユーザーを探すことが出来ます。気になるユーザーが見つかったらTalk!してみましょう。
-5. ユーザーのプロフィールページから、そのユーザーとのチャット用ページにアクセス出来ます。「一緒にゲームしませんか？」みたいなコミュニケーションをとってみてください。
+5. ユーザーのプロフィールページから、そのユーザーとのチャット用ページにアクセス出来ます。「一緒にゲームしませんか？」というようなコミュニケーションをとってみてください。
 6. With-ardの全てのユーザーをあなたはフォローすることが出来ます。もしお気に入りのユーザーが見つかったら積極的にフォローしてください。
 
 ---
 
-## インストール
+## 使用したGem
 
 ```
-$ git clone https://github.com/TomoakiTANAKA/awesome-tool
-$ cd awesome-tool
-$ sh setup.sh
-$ ~do anything~
+gem 'rubocop' #コード解析用　現状Warningコードの改善のみ
 ```
-
----
-
-## テスト
-
-- Rspecをインストールし、トップメニューの表示のみRspecを学習する意図で導入しました。今後はログインユーザーの単体テストや統合テストにも挑戦したいです。
+```
+gem 'rspec-rails', '~> 3.6' #Rspecでのテスト用
+gem 'spring-commands-rspec'
+```
+```
+gem 'devise' #ログイン機能実装用
+gem 'wicked' #ステップフォーム実装用
+```
+```
+gem 'cocoon' #ネストフォーム作成用
+```
+```
+gem 'jquery-rails' #jquery
+```
+```
+gem 'bootstrap', '~> 4.1.1' #Bootstrap4
+```
+```
+gem 'kaminari' #ページネーション実装
+```
+```
+gem "refile", require: "refile/rails", github: 'manfe/refile' #画像投稿機能用(今回はカテゴリーテーブルの画像に使用しました。)
+gem "refile-mini_magick" #画像サイズ調整用
+```
+```
+gem "aws-sdk-s3", require: false
+#ActiveStorage/S3での画像アップロード機能実装用
+```
+```
+gem 'rails_admin', '~> 1.3' #管理者ページ用
+```
+```
+gem 'cancancan', '~> 2.0'
+#アクセス制限用(今回はRails_admin用ページへの制限をかけるため)
+```
 
 ---
 
 ## デプロイ
 
 - Webサーバ
-> AWS EC2 Apache(Passenger) MySQL
+> AWS EC2 Apache(Passenger)
+- データベース(本番環境用)
+> MySQL
 - ドメイン取得(DNS設定)
 > お名前.com Route53
 - 常時SSL化
@@ -57,22 +85,10 @@ $ ~do anything~
 
 ---
 
-## その他
 
-その他その他その他その他
-その他その他その他その他
-その他その他その他その他
-その他その他その他その他
+# 作者
 
----
+[@neopuri0224](https://twitter.com/neopuri224)
+mail to: neopuri0224@gmail.com
 
-## 作者
 
-[@TanakanoAnchan](https://twitter.com/TanakanoAnchan)
-mail to: xxxx@mail.com
-
----
-
-# ライセンス
-
-[MIT](http://TomoakiTANAKA.mit-license.org)</blockquote>

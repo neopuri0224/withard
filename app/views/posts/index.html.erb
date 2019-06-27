@@ -14,80 +14,53 @@
 	      </button>
 	    </div>
 	  </div>
-	  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
-	    <div class="modal-dialog modal-bottom modal-lg shadow-lg" role="document">
-	      <div class="modal-content bg-secondary">
-	        <div class="modal-header">
-	          <h5 class="modal-title" id="exampleModalLabel">Post!</h5>
-	          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-	            <span aria-hidden="true">&times;</span>
-	          </button>
-	        </div>
-	        <%= form_with model: @post, url: posts_path do |f| %>
-		        <div class="modal-body">
-				  <div class="form-group">
-				    <%= f.label :post_content %>
-					<%= f.text_area :post_content, :placeholder => "例) 今日もゲームします！",required: true,class: 'form-control' %>
-				  </div>
-				  <div class="form-group">
-					  	<%= f.label :post_image,"画像" %>
-					  	<%= f.file_field :post_image,class: 'form-control' %>
-				  </div>
-		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-		          <%= f.submit '投稿する', class: "btn btn-primary input-sm" %>
-		        </div>
-	        <% end %>
-	      </div><!-- /.modal-content -->
-	    </div><!-- /.modal-dialog -->
-	  </div><!-- /.modal -->
     </div>
+    <%= render 'modal' %>
     <div class="col-8 offset-1">
       <div id="posts">
       	<div class="post">
 	      <% @posts.each do |post| %>
-		      <div class="card post bg-dark shadow-lg mb-3">
-		      	<div class="card-body">
-			        <div class="media">
-			          <%= link_to user_path(post.user_id),class: "align-self-start mr-3" do %>
-			            <% if post.user.profile_image.attached? %>
-				          <%= image_tag post.user.profile_image.variant(resize:'100x100').processed,style: 'border-radius: 50%;' %>
-				        <% end %>
-				      <% end %>
-				      <div class="media-body">
-				        <h5 class="mt-0"><%= post.user.name %></h5>
-				        <hr>
-				        <p class="card-text"><%= post.post_content %></p>
-						<% if post.post_image.attached? %>
-						    <%= image_tag post.post_image.variant(resize:'300x300').processed %> <br>
-						<% end %>
-						<% if post.user_id == current_user.id %>
-				          <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %>
-				        <% end %>
-				        <div class="float-right mr-1">
-				        	<p class="card-text">
-				        	  <small>
-				        		<%= post.created_at.strftime("%Y-%m-%d") %>
-				        	  </small>
-				        	</p>
-				        </div>
-				      </div>
-			        </div>
-		        </div>
+		    <div class="card post bg-dark shadow-lg mb-3">
+		      <div class="card-body">
+			    <div class="media">
+			      <%= link_to user_path(post.user_id),class: "align-self-start mr-3" do %>
+			        <% if post.user.profile_image.attached? %>
+				      <%= image_tag post.user.profile_image.variant(resize:'100x100').processed,style: 'border-radius: 50%;' %>
+				    <% end %>
+				  <% end %>
+				  <div class="media-body">
+				    <h5 class="mt-0"><%= post.user.name %></h5>
+				    <hr>
+				    <p class="card-text"><%= post.post_content %></p>
+				    <% if post.post_image.attached? %>
+					  <%= image_tag post.post_image.variant(resize:'300x300').processed %> <br>
+				    <% end %>
+				    <% if post.user_id == current_user.id %>
+				      <%= link_to '削除', post_path(post), method: :delete, "data-confirm" => "削除しますか？" %>
+				    <% end %>
+				    <div class="float-right mr-1">
+				      <p class="card-text">
+				        <small>
+				          <%= post.created_at.strftime("%Y-%m-%d") %>
+				        </small>
+				      </p>
+				    </div>
+				  </div>
+			    </div>
 		      </div>
+		    </div>
 	      <% end %>
 	    </div>
       </div>
 	  <div class="page-load-status">
-		<div class="infinite-scroll-request">
-		    <button class="btn btn-primary btn-lg" type="button" disabled>
-			  Loading...
-			</button>
-		    <br>
-		    <div hidden>
-		      <%= paginate @posts %>
-		    </div>
+	    <div class="infinite-scroll-request">
+		  <button class="btn btn-primary btn-lg" type="button" disabled>
+		    Loading...
+		  </button>
+		  <br>
+		  <div hidden>
+		    <%= paginate @posts %>
+		  </div>
 		</div>
       </div>
     </div>

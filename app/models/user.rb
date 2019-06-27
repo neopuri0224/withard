@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :games, allow_destroy: true
   accepts_nested_attributes_for :user_categories, allow_destroy: true
+
   has_one_attached :profile_image
 
   enum play_time: [:"ほとんど毎日",:"週に４~５日",:"週に2~3日",:"週に1日",:"月に2~3日",:"月に1日以下"]

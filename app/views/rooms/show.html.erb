@@ -1,66 +1,66 @@
 <div class="container" id="talk-room">
-	<div class="row talk-header bg-secondary fixed-top">
-	    <div class="col-6">
-		  <h5>
-		    <% @entries.each do |e| %>
-		      <strong>
-		      	<%= link_to user_path(e.user_id),class: 'btn btn-outline-light ml-3' do %>
-                  <%= e.user.name %>
-                <% end %>
-		      	 さん
-		      </strong>
-		    <% end %>
-		        のTalk
-		  </h5>
-		</div>
-		<div class="col-6">
-			  <%= link_to room_path(@room.id),class: 'btn btn-primary mr-2 mb-2 btn-lg float-right',"data-toggle": "tooltip", title: "受信メッセージを読み込む" do %>
-				<i class="fas fa-sync-alt"></i>
-			  <% end %>
-		</div>
+  <div class="row talk-header bg-secondary fixed-top">
+	<div class="col-6">
+	  <h5>
+		<% @entries.each do |e| %>
+		  <strong>
+		    <%= link_to user_path(e.user_id),class: 'btn btn-outline-light ml-3' do %>
+              <%= e.user.name %>
+            <% end %>
+		     さん
+		  </strong>
+		<% end %>
+		 のTalk
+      </h5>
 	</div>
-	<div class="row">
-	    <div class="col-10 offset-1">
-			<div id="talk">
-			  <% if @messages.present? %>
-			    <% @messages.each do |m| %>
-			      <ul class="list-unstyled">
-			        <% if m.user.id == current_user.id %>
-			          <li class="media">
-			            <div class="media-body text-right balloon1-right">
-			              <strong><%= m.content %></strong>
-			            </div>
-		                <% if m.user.profile_image.attached? %>
-			              <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'ml-3' %>
-			            <% end %>
-			          </li>
-			        <% else %>
-			          <li class="media">
-		                <% if m.user.profile_image.attached? %>
-			              <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'mr-3' %>
-			            <% end %>
-			            <div class="media-body  balloon1-left">
-			              <h6><strong><%= m.content %></strong></h6>
-			            </div>
-			          </li>
-			        <% end %>
-			      </ul>
-			    <% end %>
-			  <% else %>
-			    <h3 class="text-center">メッセージはまだありません</h3>
-			  <% end %>
-			</div>
-			<div class="fixed-bottom bg-secondary">
-			  <%= form_for @message do |f| %>
-			    <div class="input-group mb-3 mt-3">
-			      <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,class: 'form-control','area-describedby': "button-addon2",id: "message" %>
-			      <%= f.hidden_field :room_id, :value => @room.id %>
-			      <div class="input-group-append">
-			        <%= f.submit "送信",class: 'btn btn-primary mt-0' %>
+	<div class="col-6">
+	  <%= link_to room_path(@room.id),class: 'btn btn-primary mr-2 mb-2 btn-lg float-right',"data-toggle": "tooltip", title: "受信メッセージを読み込む" do %>
+	    <i class="fas fa-sync-alt"></i>
+	  <% end %>
+	</div>
+  </div>
+  <div class="row">
+    <div class="col-10 offset-1">
+	  <div id="talk">
+	    <% if @messages.present? %>
+		  <% @messages.each do |m| %>
+			<ul class="list-unstyled">
+			  <% if m.user.id == current_user.id %>
+			    <li class="media">
+			      <div class="media-body text-right balloon1-right">
+			        <strong><%= m.content %></strong>
 			      </div>
-			    </div>
+		          <% if m.user.profile_image.attached? %>
+			        <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'ml-3' %>
+			      <% end %>
+			    </li>
+			  <% else %>
+			    <li class="media">
+		          <% if m.user.profile_image.attached? %>
+			        <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'mr-3' %>
+			      <% end %>
+			      <div class="media-body  balloon1-left">
+			        <h6><strong><%= m.content %></strong></h6>
+			      </div>
+			    </li>
 			  <% end %>
+			</ul>
+	      <% end %>
+	    <% else %>
+	      <h3 class="text-center">メッセージはまだありません</h3>
+		<% end %>
+	  </div>
+	  <div class="fixed-bottom bg-secondary">
+	    <%= form_for @message do |f| %>
+		  <div class="input-group mb-3 mt-3">
+			<%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70,class: 'form-control','area-describedby': "button-addon2",id: "message" %>
+			<%= f.hidden_field :room_id, :value => @room.id %>
+			<div class="input-group-append">
+			  <%= f.submit "送信",class: 'btn btn-primary mt-0' %>
 			</div>
-	    </div>
+	      </div>
+	    <% end %>
+	  </div>
 	</div>
+  </div>
 </div>

@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rspec-rails', '~> 3.6'
   gem 'spring-commands-rspec'
+  gem 'pry-byebug' #エラー検証
 end
 
 group :development do
@@ -65,13 +66,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise' #ログイン機能実装用
 gem 'wicked' #ステップフォーム実装用
-gem 'omniauth' #Twitterログイン機能実装用
-gem 'omniauth-twitter' #Twitterログイン機能実装用
 gem 'cocoon' #ネストフォーム作成用
 gem 'jquery-rails' #jquery
 gem 'bootstrap', '~> 4.1.1' #Bootstrap4
 gem 'kaminari' #ページネーション実装
-gem 'pry-byebug' #エラー検証
 gem "refile", require: "refile/rails", github: 'manfe/refile' #画像投稿機能用(今回はカテゴリーテーブルの画像に使用しました。)
 gem "refile-mini_magick" #画像サイズ調整用
 gem "aws-sdk-s3", require: false #ActiveStorage/S3での画像アップロード機能実装用
