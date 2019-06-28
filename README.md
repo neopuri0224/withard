@@ -1,7 +1,7 @@
 ![image](https://user-images.githubusercontent.com/48162068/60248725-3633f280-98fe-11e9-8099-3e0fc939bf0f.png)
 
 # With-ard
-This application can be coversation with another game players.
+This application can be conversation with another game players.
 With-ardは、ゲーマー向けのコミュニケーション用SNSです。
 自分の好きなゲームカテゴリやタイトルを登録し、共通の趣味を持ったユーザーと会話することが出来ます。
 
