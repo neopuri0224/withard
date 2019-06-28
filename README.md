@@ -1,7 +1,7 @@
 ![image](https://user-images.githubusercontent.com/48162068/60248725-3633f280-98fe-11e9-8099-3e0fc939bf0f.png)
 
 # With-ard
-This application can be coversation with another game players.
+This application can be conversation with another game players.
 With-ardは、ゲーマー向けのコミュニケーション用SNSです。
 自分の好きなゲームカテゴリやタイトルを登録し、共通の趣味を持ったユーザーと会話することが出来ます。
 
@@ -24,6 +24,13 @@ With-ardは、ゲーマー向けのコミュニケーション用SNSです。
 4. Find User!では10種類のゲームカテゴリから、With-ardユーザーを探すことが出来ます。気になるユーザーが見つかったらTalk!してみましょう。
 5. ユーザーのプロフィールページから、そのユーザーとのチャット用ページにアクセス出来ます。「一緒にゲームしませんか？」というようなコミュニケーションをとってみてください。
 6. With-ardの全てのユーザーをあなたはフォローすることが出来ます。もしお気に入りのユーザーが見つかったら積極的にフォローしてください。
+
+---
+
+## バージョン
+
+- Ruby 2.3.8
+- Rails 5.2.3
 
 ---
 
