@@ -75,3 +75,4 @@ gem "refile-mini_magick" #画像サイズ調整用
 gem "aws-sdk-s3", require: false #ActiveStorage/S3での画像アップロード機能実装用
 gem 'rails_admin', '~> 1.3' #管理者ページ用
 gem 'cancancan', '~> 2.0' #アクセス制限用(今回はRails_admin用ページへの制限をかけるため)
+gem 'redis-rails' #セッションデータを保存
