@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:show, :edit, :update, :following, :followers]
 
   def index
   	@category = Category.find(params[:category_id])
@@ -9,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
     @current_user_entries = Entry.where(user_id: current_user.id)
     @user_entries = Entry.where(user_id: @user.id)
 
@@ -37,14 +37,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find(params[:id])
     if @user.id != current_user.id
       redirect_to edit_user_path(current_user)
     end
   end
 
   def update
-  	@user = User.find(params[:id])
   	@user_category = @user.user_categories
     #中間テーブルを更新する際に、unique制約に引っかかってしまったためupdate前に削除
   	@user_category.delete_all
@@ -58,13 +56,11 @@ class UsersController < ApplicationController
   end
 
   def following
-    @user  = User.find(params[:id])
     @users = @user.following.page(params[:page])
     render 'show_follow'
   end
 
   def followers
-    @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page])
     render 'show_follow'
   end
@@ -84,6 +80,10 @@ class UsersController < ApplicationController
     	                         games_attributes: [:id, :user_id, :title, :_destroy],
                                  user_categories_attributes: [:category_id, :_destroy]
     	                        )
+  end
+
+  def set_user
+    @user  = User.find(params[:id])
   end
 
 end
