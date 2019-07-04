@@ -32,12 +32,16 @@
 			      </div>
 		          <% if m.user.profile_image.attached? %>
 			        <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'ml-3' %>
+			      <% else %>
+			        <%= image_tag "no_image.jpg",size: '80x80',style: 'border-radius: 50%;',class: 'ml-3' %>
 			      <% end %>
 			    </li>
 			  <% else %>
 			    <li class="media">
 		          <% if m.user.profile_image.attached? %>
 			        <%= image_tag m.user.profile_image.variant(resize:'80x80').processed,style: 'border-radius: 50%;',class: 'mr-3' %>
+                  <% else %>
+			        <%= image_tag "no_image.jpg",size: '80x80',style: 'border-radius: 50%;',class: 'mr-3' %>
 			      <% end %>
 			      <div class="media-body  balloon1-left">
 			        <h6><strong><%= m.content %></strong></h6>

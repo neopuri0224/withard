@@ -2,7 +2,11 @@
   <div class="row">
   	<div class="col-2">
 	  <div class="card position-fixed bg-dark" style="width: 14rem;">
-		<%= image_tag (current_user.profile_image),class: 'profile_image card-img-top' if current_user.profile_image.attached? %>
+	  	<% if current_user.profile_image.attached? %>
+		  <%= image_tag (current_user.profile_image),class: 'profile_image card-img-top' %>
+		<% else %>
+		  <%= image_tag "no_image.jpg",class: 'profile_image card-img-top' %>
+		<% end %>
 	    <div class="card-body p-2">
 		  <h5 class="card-title"><%= current_user.name %></h5>
 	      <section class="stats">
@@ -26,6 +30,8 @@
 			      <%= link_to user_path(post.user_id),class: "align-self-start mr-3" do %>
 			        <% if post.user.profile_image.attached? %>
 				      <%= image_tag post.user.profile_image.variant(resize:'100x100').processed,style: 'border-radius: 50%;' %>
+				    <% else %>
+				      <%= image_tag "no_image.jpg",size: '100x100',style: 'border-radius: 50%;' %>
 				    <% end %>
 				  <% end %>
 				  <div class="media-body">
