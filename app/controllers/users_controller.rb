@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :following, :followers]
+  before_action :collect_user, only:[:edit, :update]
 
   def index
   	@category = Category.find(params[:category_id])
@@ -33,19 +34,15 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-
   end
 
   def edit
-    if @user.id != current_user.id
-      redirect_to edit_user_path(current_user)
-    end
   end
 
   def update
-  	@user_category = @user.user_categories
+  	@user_categories = @user.user_categories
     #中間テーブルを更新する際に、unique制約に引っかかってしまったためupdate前に削除
-  	@user_category.delete_all
+  	@user_categories.delete_all
     if @user.update(user_params)
       flash[:notice] = "ユーザー情報の更新に成功しました。"
       redirect_to user_path(@user.id)
@@ -84,6 +81,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user  = User.find(params[:id])
+  end
+
+  def collect_user
+    if @user.id != current_user.id
+      redirect_to user_path(@user)
+    end
   end
 
 end
