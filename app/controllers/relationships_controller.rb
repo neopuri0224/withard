@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-  before_action :authenticate_user!
 
   def create #フォロー機能
     @user = User.find(params[:followed_id])

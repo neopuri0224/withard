@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-	before_action :authenticate_user!
 
   def create #DM用メッセージ投稿機能
     #もしEntryモデルに、user_idが自分のIDで、paramsで送信されたroom_idとmessageが存在したら？

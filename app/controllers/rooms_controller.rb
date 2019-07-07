@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
 
   def index #current_userのルーム一覧
     @currentEntries = current_user.entries
