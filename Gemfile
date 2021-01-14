@@ -73,5 +73,5 @@ gem 'kaminari' #ページネーション実装
 gem "refile", require: "refile/rails", github: 'manfe/refile' #画像投稿機能用(今回はカテゴリーテーブルの画像に使用しました。)
 gem "refile-mini_magick" #画像サイズ調整用
 gem "aws-sdk-s3", require: false #ActiveStorage/S3での画像アップロード機能実装用
-gem 'rails_admin', '~> 1.3' #管理者ページ用
+gem 'rails_admin', '~> 1.4' #管理者ページ用
 gem 'cancancan', '~> 2.0' #アクセス制限用(今回はRails_admin用ページへの制限をかけるため)
